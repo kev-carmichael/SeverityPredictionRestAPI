@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS user;
 
 CREATE TABLE user
 (
-    id integer primary key auto_increment,
+    user_id integer primary key auto_increment,
     email varchar(50) not null
 );
 
