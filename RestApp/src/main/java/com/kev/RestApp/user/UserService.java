@@ -2,6 +2,7 @@ package com.kev.RestApp.user;
 
 
 import com.kev.RestApp.entity.User;
+import com.kev.RestApp.factory.DTOFactory;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,9 @@ import java.util.List;
 
 
 public class UserService {
+
+    UserRepository userRepository;
+    DTOFactory dtoFactory;
 
     public List<UserDTO> getUserList() {
         List<UserDTO> list = new ArrayList<>();
