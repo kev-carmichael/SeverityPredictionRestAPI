@@ -20,7 +20,7 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping(path = "/all")
-    public List<UserDTO> getCustomerList() {
+    public List<UserDTO> getUserList() {
         return userService.getUserList();
     }
 
