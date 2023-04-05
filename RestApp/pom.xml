@@ -14,7 +14,7 @@
 	<name>RestApp</name>
 	<description>A UK general aviation accident prediction application made using Spring Boot</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>1.8</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
