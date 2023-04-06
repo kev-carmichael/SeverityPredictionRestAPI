@@ -10,7 +10,8 @@ CREATE TABLE user
 CREATE TABLE simulation
 (
     simulation_id integer primary key auto_increment,
-    last_input datetime not null
+    last_input datetime not null,
+    no_of_attributes integer not null
 );
 
 INSERT INTO user (email)
@@ -18,8 +19,8 @@ VALUES ('adam@gmail.com'),
        ('bob@gmail.com'),
        ('colin@gmail.com');
 
-INSERT INTO simulation (last_input)
-VALUES ('2023-01-01 01:11:11'),
-       ('2023-02-02 02:22:22'),
-       ('2023-03-03 03:33:33');
+INSERT INTO simulation (last_input, no_of_attributes)
+VALUES ('2023-01-01 01:11:11', 8),
+       ('2023-02-02 02:22:22', 9),
+       ('2023-03-03 03:33:33', 8);
 

@@ -21,4 +21,6 @@ public class Simulation {
     private int simulationId;
     private LocalDateTime lastInput;
 
+    private int noOfAttributes;
+
 }

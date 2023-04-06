@@ -16,5 +16,7 @@ public class SimulationDTO {
     private final int simulationId;
     private final LocalDateTime lastInput;
 
+    private final int noOfAttributes;
+
 
 }

@@ -32,7 +32,8 @@ public class DTOFactory {
         SimulationDTO simulationDTO =
                 new SimulationDTO(
                         simulation.getSimulationId(),
-                        simulation.getLastInput());
+                        simulation.getLastInput(),
+                        simulation.getNoOfAttributes());
         return simulationDTO;
     }
 
