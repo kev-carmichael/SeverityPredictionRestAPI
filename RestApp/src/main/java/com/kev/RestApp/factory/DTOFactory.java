@@ -1,6 +1,8 @@
 package com.kev.RestApp.factory;
 
+import com.kev.RestApp.entity.Simulation;
 import com.kev.RestApp.entity.User;
+import com.kev.RestApp.simulation.SimulationDTO;
 import com.kev.RestApp.user.UserDTO;
 import com.kev.RestApp.user.UserRepository;
 import org.springframework.stereotype.Component;
@@ -25,5 +27,14 @@ public class DTOFactory {
                             user.getEmail());
             return userDTO;
     }
+
+    public SimulationDTO createDTO(Simulation simulation) {
+        SimulationDTO simulationDTO =
+                new SimulationDTO(
+                        simulation.getSimulationId(),
+                        simulation.getLastInput());
+        return simulationDTO;
+    }
+
 
 }
