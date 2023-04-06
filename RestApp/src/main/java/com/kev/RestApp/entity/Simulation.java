@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,6 +19,6 @@ public class Simulation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int simulationId;
-    private LocalDate lastInputDate;
+    private LocalDateTime lastInput;
 
 }
