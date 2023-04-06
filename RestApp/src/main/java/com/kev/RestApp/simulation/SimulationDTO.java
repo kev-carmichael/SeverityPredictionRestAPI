@@ -17,6 +17,9 @@ public class SimulationDTO {
     private final LocalDateTime lastInput;
 
     private final int noOfAttributes;
+    private final String dayOfWeek;
+    private final String accidentSeverity;
+    private final String injurySeverity;
 
 
 }

@@ -33,7 +33,10 @@ public class DTOFactory {
                 new SimulationDTO(
                         simulation.getSimulationId(),
                         simulation.getLastInput(),
-                        simulation.getNoOfAttributes());
+                        simulation.getNoOfAttributes(),
+                        simulation.getDayOfWeek(),
+                        simulation.getAccidentSeverity(),
+                        simulation.getInjurySeverity());
         return simulationDTO;
     }
 

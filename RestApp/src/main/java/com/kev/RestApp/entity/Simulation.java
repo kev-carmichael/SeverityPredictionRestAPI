@@ -22,5 +22,8 @@ public class Simulation {
     private LocalDateTime lastInput;
 
     private int noOfAttributes;
+    private String dayOfWeek;
+    private String accidentSeverity;
+    private String injurySeverity;
 
 }
