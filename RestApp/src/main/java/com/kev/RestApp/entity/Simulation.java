@@ -21,6 +21,7 @@ public class Simulation {
     private int simulationId;
     private LocalDateTime lastInput;
 
+    private String target;
     private int noOfAttributes;
     private String dayOfWeek;
     private String accidentSeverity;
