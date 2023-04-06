@@ -11,6 +11,7 @@ CREATE TABLE simulation
 (
     simulation_id integer primary key auto_increment,
     last_input datetime not null,
+    user integer not null,
     target varchar(50) not null,
     no_of_attributes integer not null,
     day_of_week varchar(10),
@@ -23,8 +24,8 @@ VALUES ('adam@gmail.com'),
        ('bob@gmail.com'),
        ('colin@gmail.com');
 
-INSERT INTO simulation (last_input, target, no_of_attributes, day_of_week, accident_severity, injury_severity)
-VALUES ('2023-01-01 01:11:11', 'accident severity', 8, null, 'non-severe', null),
-       ('2023-02-02 02:22:22', 'injury severity', 9, 'Wednesday', null, 'minor/no injury'),
-       ('2023-03-03 03:33:33', 'accident severity', 8, null, 'severe', null);
+INSERT INTO simulation (last_input, user, target, no_of_attributes, day_of_week, accident_severity, injury_severity)
+VALUES ('2023-01-01 01:11:11', 1, 'accident severity', 8, null, 'non-severe', null),
+       ('2023-02-02 02:22:22', 2, 'injury severity', 9, 'Wednesday', null, 'minor/no injury'),
+       ('2023-03-03 03:33:33', 1, 'accident severity', 8, null, 'severe', null);
 

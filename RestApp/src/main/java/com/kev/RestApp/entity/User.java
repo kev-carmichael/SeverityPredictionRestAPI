@@ -19,4 +19,15 @@ public class User {
     private int userId;
     private String email;
 
+
+    @Override
+    public String toString()
+    {
+        return String.format(
+                "%s, %s",
+                userId,
+                email);
+    }
+
+
 }

@@ -19,7 +19,12 @@ public class Simulation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int simulationId;
+
     private LocalDateTime lastInput;
+
+    @ManyToOne
+    @JoinColumn(name = "user", nullable = false)
+    private User user;
 
     private String target;
     private int noOfAttributes;
