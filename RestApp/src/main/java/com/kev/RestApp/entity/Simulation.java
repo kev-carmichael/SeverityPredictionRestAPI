@@ -6,17 +6,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 
 @Entity
-@Table(name = "user")
-public class User {
+@Table(name = "simulation")
+public class Simulation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int userId;
-    private String email;
+    private int simulationId;
+    private LocalDate lastInputDate;
 
 }
