@@ -1,6 +1,8 @@
 package com.kev.RestApp.simulation;
 
 
+import com.kev.RestApp.dto.Result;
+import com.kev.RestApp.util.Loader;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
