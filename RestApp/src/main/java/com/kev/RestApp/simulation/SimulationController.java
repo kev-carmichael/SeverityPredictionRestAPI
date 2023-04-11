@@ -2,14 +2,13 @@ package com.kev.RestApp.simulation;
 
 
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/simulation")
+@RequestMapping("/rest/simulation")
 @AllArgsConstructor
 public class SimulationController {
 
@@ -19,5 +18,20 @@ public class SimulationController {
     public List<SimulationDTO> getSimulationList(){
         return simulationService.getSimulationList();
     }
+
+    @PostMapping(path = "/run7")
+    public Result returnResult7(@RequestBody ArrayList<String> simulationData) throws Exception {
+        Loader loader = new Loader();
+
+        return new Result(loader.load(simulationData));
+    }
+
+    @PostMapping(path = "/run8")
+    public Result returnResult8(@RequestBody ArrayList<String> simulationData) throws Exception {
+        Loader loader = new Loader();
+
+        return new Result(loader.load(simulationData));
+    }
+
 
 }
