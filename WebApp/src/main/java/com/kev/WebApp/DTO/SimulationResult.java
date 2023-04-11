@@ -15,5 +15,5 @@ public class SimulationResult
 {
     private String simulationInput;
     private String results;
-    
+
 }
