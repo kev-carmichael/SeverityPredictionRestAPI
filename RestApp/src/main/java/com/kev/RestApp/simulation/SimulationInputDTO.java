@@ -11,9 +11,9 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 
-public class SimulationDTO {
 
-    private final int simulationId;
+public class SimulationInputDTO {
+
 //    private final LocalDateTime lastInput;
 //    private final String user;
 //    private final String target;
@@ -27,7 +27,5 @@ public class SimulationDTO {
     private final int ninetyDayHrs;
     private final int twentyEightDayHrs;
     private final String dayOfWeek;
-    private final String accidentSeverity;
-    private final String injurySeverity;
 
 }

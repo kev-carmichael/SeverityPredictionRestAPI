@@ -28,14 +28,15 @@ public class Loader {
             double prediction = classifier.classifyInstance(testInstance);
             double[] probabilities = classifier.distributionForInstance(testInstance);
 
-            result += "Instance " + (i+1) + " - ";
+            /*result += "Instance " + (i+1) + " - ";
             result += "Actual class: " + testInstance.stringValue(testInstance.classIndex());
             result += " Predicted class: " + testInstances.classAttribute().value((int) prediction);
             result += ". Class probabilities: ";
             for (double probability : probabilities) {
                 result += probability + " ";
             }
-            result += "\n";
+            result += "\n";*/
+            result = testInstances.classAttribute().value((int) prediction);
         }
         return result;
     }

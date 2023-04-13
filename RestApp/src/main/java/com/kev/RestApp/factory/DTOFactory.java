@@ -32,10 +32,18 @@ public class DTOFactory {
         SimulationDTO simulationDTO =
                 new SimulationDTO(
                         simulation.getSimulationId(),
-                        simulation.getLastInput(),
-                        simulation.getUser().toString(),
-                        simulation.getTarget(),
-                        simulation.getNoOfAttributes(),
+//                        simulation.getLastInput(),
+//                        simulation.getUser().toString(),
+//                        simulation.getTarget(),
+//                        simulation.getNoOfAttributes(),
+                        simulation.getAgeAircraft(),
+                        simulation.getNoOfPassengers(),
+                        simulation.getPicLicence(),
+                        simulation.getPicAge(),
+                        simulation.getTotalHrs(),
+                        simulation.getTypeHrs(),
+                        simulation.getNinetyDayHrs(),
+                        simulation.getTwentyEightDayHrs(),
                         simulation.getDayOfWeek(),
                         simulation.getAccidentSeverity(),
                         simulation.getInjurySeverity());

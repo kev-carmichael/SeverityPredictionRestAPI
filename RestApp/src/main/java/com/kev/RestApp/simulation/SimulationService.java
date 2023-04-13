@@ -1,7 +1,9 @@
 package com.kev.RestApp.simulation;
 
+import com.kev.RestApp.dto.Result;
 import com.kev.RestApp.entity.Simulation;
 import com.kev.RestApp.factory.DTOFactory;
+import com.kev.RestApp.util.Loader;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,5 +25,30 @@ public class SimulationService {
         }
         return list;
     }
+
+    public Simulation addSimulation8(SimulationInputDTO simulationInputDTO) throws Exception{
+        int size = simulationRepository.findAll().size();
+
+        Loader loader = new Loader();
+
+        Simulation simulation = new Simulation(
+                size + 1,
+                simulationInputDTO.getAgeAircraft(),
+                simulationInputDTO.getNoOfPassengers(),
+                simulationInputDTO.getPicLicence(),
+                simulationInputDTO.getPicAge(),
+                simulationInputDTO.getTotalHrs(),
+                simulationInputDTO.getTypeHrs(),
+                simulationInputDTO.getNinetyDayHrs(),
+                simulationInputDTO.getTwentyEightDayHrs(),
+                null,
+                null,
+//                loader.load(simulationInputDTO),
+                null
+        );
+
+        return simulationRepository.save(simulation);
+    }
+
 
 }

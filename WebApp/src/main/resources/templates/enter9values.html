@@ -7,7 +7,7 @@
 <body>
 <h1>Enter Accident Simulation Values:</h1>
 <form action="#"
-      th:action="@{/web/simulation/run7}"
+      th:action="@{/web/simulation/run9}"
       th:object="${simulationInput}"
       method="post">
   <legend>Age aircraft</legend>
@@ -58,6 +58,18 @@
   <p>
     <select id="dropdown28dayhrs" name="dropdown28dayhrs" th:field="*{text7}">
       <option th:each="i : ${#numbers.sequence(0, 140)}" th:value="${i}" th:text="${i}"></option>
+    </select>
+  </p>
+  <legend>Day of the Week</legend>
+  <p>
+    <select id="dropdowndayoftheweek" name="dropdowndayoftheweek" th:field="*{text8}">
+      <option value="Mon" selected>Mon</option>
+      <option value="Tue">Tue</option>
+      <option value="Wed">Wed</option>
+      <option value="Thu">Thu</option>
+      <option value="Fri">Fri</option>
+      <option value="Sat">Sat</option>
+      <option value="Sun">Sun</option>
     </select>
   </p>
   <p><input type="submit" value="Run Simulation" /></p>

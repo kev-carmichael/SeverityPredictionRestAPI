@@ -22,20 +22,20 @@ public class WebSimulationController {
 
 
 
-    @GetMapping(path = "/web/simulation/run7")
-    public String runSimulation7(Model model) {
-        model.addAttribute("simulationInput", new SimulationInput());
-        return "enter7values";
-    }
-
     @GetMapping(path = "/web/simulation/run8")
-    public String runSimulation8(Model model) {
+    public String runSimulation7(Model model) {
         model.addAttribute("simulationInput", new SimulationInput());
         return "enter8values";
     }
 
+    @GetMapping(path = "/web/simulation/run9")
+    public String runSimulation8(Model model) {
+        model.addAttribute("simulationInput", new SimulationInput());
+        return "enter9values";
+    }
 
-    @PostMapping(path = "/web/simulation/run7")
+
+    @PostMapping(path = "/web/simulation/run8")
     public String runSimulation7(@ModelAttribute SimulationInput simulationInput, Model model) {
         simulationData.clear();
         simulationData.add(simulationInput.getText0());
@@ -51,7 +51,7 @@ public class WebSimulationController {
                 new RestTemplateBuilder()
                         .build()
                         .postForObject(
-                                "http://localhost:8080/rest/simulation/run7",
+                                "http://localhost:8080/rest/simulation/run8",
                                 simulationData,
                                 Result.class);
 
@@ -62,7 +62,7 @@ public class WebSimulationController {
         return "result";
     }
 
-    @PostMapping(path = "/web/simulation/run8")
+    @PostMapping(path = "/web/simulation/run9")
     public String runSimulation8(@ModelAttribute SimulationInput simulationInput, Model model) {
         simulationData.clear();
         simulationData.add(simulationInput.getText0());
@@ -79,7 +79,7 @@ public class WebSimulationController {
                 new RestTemplateBuilder()
                         .build()
                         .postForObject(
-                                "http://localhost:8080/rest/simulation/run8",
+                                "http://localhost:8080/rest/simulation/run9",
                                 simulationData,
                                 Result.class);
 

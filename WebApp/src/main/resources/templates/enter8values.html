@@ -60,18 +60,6 @@
       <option th:each="i : ${#numbers.sequence(0, 140)}" th:value="${i}" th:text="${i}"></option>
     </select>
   </p>
-  <legend>Day of the Week</legend>
-  <p>
-    <select id="dropdowndayoftheweek" name="dropdowndayoftheweek" th:field="*{text8}">
-      <option value="Mon" selected>Mon</option>
-      <option value="Tue">Tue</option>
-      <option value="Wed">Wed</option>
-      <option value="Thu">Thu</option>
-      <option value="Fri">Fri</option>
-      <option value="Sat">Sat</option>
-      <option value="Sun">Sun</option>
-    </select>
-  </p>
   <p><input type="submit" value="Run Simulation" /></p>
 </form>
 

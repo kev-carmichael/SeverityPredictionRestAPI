@@ -4,5 +4,18 @@ GET http://localhost:8080/user/all
 ###
 GET http://localhost:8080/rest/simulation/all
 
+###
+POST http://localhost:8080/rest/simulation/run8
+Content-Type: application/json
 
-
+{
+  "ageAircraft": 25,
+  "noOfPassengers": 1,
+  "picLicence": "student",
+  "picAge": 67,
+  "totalHrs": 34,
+  "typeHrs": 1,
+  "ninetyDayHrs": 1,
+  "twentyEightDayHrs": 1,
+  "dayOfWeek": null
+}

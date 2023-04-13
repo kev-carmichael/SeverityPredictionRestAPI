@@ -20,14 +20,22 @@ public class Simulation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int simulationId;
 
-    private LocalDateTime lastInput;
+//    private LocalDateTime lastInput;
 
-    @ManyToOne
-    @JoinColumn(name = "user", nullable = false)
-    private User user;
+//    @ManyToOne
+//    @JoinColumn(name = "user", nullable = false)
+//    private User user;
 
-    private String target;
-    private int noOfAttributes;
+//    private String target;
+//    private int noOfAttributes;
+    private int ageAircraft;
+    private int noOfPassengers;
+    private String picLicence;
+    private int picAge;
+    private int totalHrs;
+    private int typeHrs;
+    private int ninetyDayHrs;
+    private int twentyEightDayHrs;
     private String dayOfWeek;
     private String accidentSeverity;
     private String injurySeverity;

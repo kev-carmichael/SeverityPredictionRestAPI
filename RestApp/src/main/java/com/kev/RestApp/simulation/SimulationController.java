@@ -2,6 +2,7 @@ package com.kev.RestApp.simulation;
 
 
 import com.kev.RestApp.dto.Result;
+import com.kev.RestApp.factory.DTOFactory;
 import com.kev.RestApp.util.Loader;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -15,25 +16,33 @@ import java.util.List;
 public class SimulationController {
 
     private final SimulationService simulationService;
+    private final DTOFactory dtoFactory;
 
     @GetMapping(path="/all")
     public List<SimulationDTO> getSimulationList(){
         return simulationService.getSimulationList();
     }
 
-    @PostMapping(path = "/run7")
-    public Result returnResult7(@RequestBody ArrayList<String> simulationData) throws Exception {
-        Loader loader = new Loader();
-
-        return new Result(loader.load(simulationData));
-    }
-
-    @PostMapping(path = "/run8")
+    /*@PostMapping(path = "/run8")
     public Result returnResult8(@RequestBody ArrayList<String> simulationData) throws Exception {
         Loader loader = new Loader();
 
         return new Result(loader.load(simulationData));
+    }*/
+
+    @PostMapping(path = "/run8")
+    public SimulationDTO addSimulation8
+            (@RequestBody SimulationInputDTO simulationInputDTO) throws Exception {
+        return dtoFactory.createDTO(simulationService.addSimulation8(simulationInputDTO));
     }
+
+
+    /*@PostMapping(path = "/run9")
+    public Result returnResult9(@RequestBody ArrayList<String> simulationData) throws Exception {
+        Loader loader = new Loader();
+
+        return new Result(loader.load(simulationData));
+    }*/
 
 
 }
