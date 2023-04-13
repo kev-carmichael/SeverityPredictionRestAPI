@@ -42,8 +42,7 @@ public class SimulationService {
                 simulationInputDTO.getNinetyDayHrs(),
                 simulationInputDTO.getTwentyEightDayHrs(),
                 null,
-                null,
-//                loader.load(simulationInputDTO),
+                loader.load8(simulationInputDTO),
                 null
         );
 
