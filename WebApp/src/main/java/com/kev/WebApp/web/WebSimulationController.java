@@ -61,31 +61,35 @@ public class WebSimulationController {
         return "result";
     }
 
-    /*@PostMapping(path = "/web/simulation/run9")
+    @PostMapping(path = "/web/simulation/run9")
     public String runSimulation9(@ModelAttribute SimulationInput simulationInput, Model model) {
-        simulationData.clear();
-        simulationData.add(simulationInput.getText0());
-        simulationData.add(simulationInput.getText1());
-        simulationData.add(simulationInput.getText2());
-        simulationData.add(simulationInput.getText3());
-        simulationData.add(simulationInput.getText4());
-        simulationData.add(simulationInput.getText5());
-        simulationData.add(simulationInput.getText6());
-        simulationData.add(simulationInput.getText7());
-        simulationData.add(simulationInput.getText8());
+        SimulationInputDTO simulationInputDTO = new SimulationInputDTO(
+                Integer.parseInt(simulationInput.getText0()),
+                Integer.parseInt(simulationInput.getText1()),
+                simulationInput.getText2(),
+                Integer.parseInt(simulationInput.getText3()),
+                Integer.parseInt(simulationInput.getText4()),
+                Integer.parseInt(simulationInput.getText5()),
+                Integer.parseInt(simulationInput.getText6()),
+                Integer.parseInt(simulationInput.getText7()),
+                simulationInput.getText8());
 
-        Result result =
+        SimulationDTO simulationDTO =
                 new RestTemplateBuilder()
                         .build()
                         .postForObject(
                                 "http://localhost:8080/rest/simulation/run9",
-                                simulationData,
-                                Result.class);
+                                simulationInputDTO,
+                                SimulationDTO.class);
 
         model.addAttribute(
                 "simulationResult",
-                new SimulationResult(simulationInput.getText2(), result.getResults()));
+                new SimulationResult(simulationInput.getText2(), simulationDTO.getInjurySeverity()));
 
         return "result";
-    }*/
+    }
+
+
+
+
 }

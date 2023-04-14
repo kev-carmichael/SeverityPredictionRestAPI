@@ -23,26 +23,19 @@ public class SimulationController {
         return simulationService.getSimulationList();
     }
 
-    /*@PostMapping(path = "/run8")
-    public Result returnResult8(@RequestBody ArrayList<String> simulationData) throws Exception {
-        Loader loader = new Loader();
-
-        return new Result(loader.load(simulationData));
-    }*/
-
     @PostMapping(path = "/run8")
     public SimulationDTO addSimulation8
             (@RequestBody SimulationInputDTO simulationInputDTO) throws Exception {
         return dtoFactory.createDTO(simulationService.addSimulation8(simulationInputDTO));
     }
 
+    @PostMapping(path = "/run9")
+    public SimulationDTO addSimulation9
+            (@RequestBody SimulationInputDTO simulationInputDTO) throws Exception {
+        return dtoFactory.createDTO(simulationService.addSimulation9(simulationInputDTO));
+    }
 
-    /*@PostMapping(path = "/run9")
-    public Result returnResult9(@RequestBody ArrayList<String> simulationData) throws Exception {
-        Loader loader = new Loader();
 
-        return new Result(loader.load(simulationData));
-    }*/
 
 
 }

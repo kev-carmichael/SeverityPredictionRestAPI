@@ -43,9 +43,28 @@ public class SimulationService {
                 simulationInputDTO.getTwentyEightDayHrs(),
                 null,
                 loader.load8(simulationInputDTO),
-                null
-        );
+                null);
+        return simulationRepository.save(simulation);
+    }
 
+    public Simulation addSimulation9(SimulationInputDTO simulationInputDTO) throws Exception{
+        int size = simulationRepository.findAll().size();
+
+        Loader loader = new Loader();
+
+        Simulation simulation = new Simulation(
+                size + 1,
+                simulationInputDTO.getAgeAircraft(),
+                simulationInputDTO.getNoOfPassengers(),
+                simulationInputDTO.getPicLicence(),
+                simulationInputDTO.getPicAge(),
+                simulationInputDTO.getTotalHrs(),
+                simulationInputDTO.getTypeHrs(),
+                simulationInputDTO.getNinetyDayHrs(),
+                simulationInputDTO.getTwentyEightDayHrs(),
+                simulationInputDTO.getDayOfWeek(),
+                null,
+                loader.load9(simulationInputDTO));
         return simulationRepository.save(simulation);
     }
 

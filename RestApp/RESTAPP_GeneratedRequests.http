@@ -19,3 +19,19 @@ Content-Type: application/json
   "twentyEightDayHrs": 1,
   "dayOfWeek": null
 }
+
+###
+POST http://localhost:8080/rest/simulation/run9
+Content-Type: application/json
+
+{
+  "ageAircraft": 50,
+  "noOfPassengers": 1,
+  "picLicence": "airline transport pilot licence",
+  "picAge": 52,
+  "totalHrs": 10000,
+  "typeHrs": 1,
+  "ninetyDayHrs": 1,
+  "twentyEightDayHrs": 1,
+  "dayOfWeek": "Wed"
+}
