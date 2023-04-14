@@ -1,8 +1,6 @@
 package com.kev.WebApp.web;
 
-import com.kev.WebApp.DTO.Result;
-import com.kev.WebApp.DTO.SimulationInput;
-import com.kev.WebApp.DTO.SimulationResult;
+import com.kev.WebApp.DTO.*;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,47 +21,48 @@ public class WebSimulationController {
 
 
     @GetMapping(path = "/web/simulation/run8")
-    public String runSimulation7(Model model) {
+    public String runSimulation8(Model model) {
         model.addAttribute("simulationInput", new SimulationInput());
         return "enter8values";
     }
 
     @GetMapping(path = "/web/simulation/run9")
-    public String runSimulation8(Model model) {
+    public String runSimulation9(Model model) {
         model.addAttribute("simulationInput", new SimulationInput());
         return "enter9values";
     }
 
 
     @PostMapping(path = "/web/simulation/run8")
-    public String runSimulation7(@ModelAttribute SimulationInput simulationInput, Model model) {
-        simulationData.clear();
-        simulationData.add(simulationInput.getText0());
-        simulationData.add(simulationInput.getText1());
-        simulationData.add(simulationInput.getText2());
-        simulationData.add(simulationInput.getText3());
-        simulationData.add(simulationInput.getText4());
-        simulationData.add(simulationInput.getText5());
-        simulationData.add(simulationInput.getText6());
-        simulationData.add(simulationInput.getText7());
+    public String runSimulation8(@ModelAttribute SimulationInput simulationInput, Model model) {
+        SimulationInputDTO simulationInputDTO = new SimulationInputDTO(
+                Integer.parseInt(simulationInput.getText0()),
+                Integer.parseInt(simulationInput.getText1()),
+                simulationInput.getText2(),
+                Integer.parseInt(simulationInput.getText3()),
+                Integer.parseInt(simulationInput.getText4()),
+                Integer.parseInt(simulationInput.getText5()),
+                Integer.parseInt(simulationInput.getText6()),
+                Integer.parseInt(simulationInput.getText7()),
+                null);
 
-        Result result =
+        SimulationDTO simulationDTO =
                 new RestTemplateBuilder()
                         .build()
                         .postForObject(
                                 "http://localhost:8080/rest/simulation/run8",
-                                simulationData,
-                                Result.class);
+                                simulationInputDTO,
+                                SimulationDTO.class);
 
         model.addAttribute(
                 "simulationResult",
-                new SimulationResult(simulationInput.getText2(), result.getResults()));
+                new SimulationResult(simulationInput.getText2(), simulationDTO.getAccidentSeverity()));
 
         return "result";
     }
 
-    @PostMapping(path = "/web/simulation/run9")
-    public String runSimulation8(@ModelAttribute SimulationInput simulationInput, Model model) {
+    /*@PostMapping(path = "/web/simulation/run9")
+    public String runSimulation9(@ModelAttribute SimulationInput simulationInput, Model model) {
         simulationData.clear();
         simulationData.add(simulationInput.getText0());
         simulationData.add(simulationInput.getText1());
@@ -88,5 +87,5 @@ public class WebSimulationController {
                 new SimulationResult(simulationInput.getText2(), result.getResults()));
 
         return "result";
-    }
+    }*/
 }
