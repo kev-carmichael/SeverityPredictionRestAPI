@@ -19,8 +19,6 @@ public class SimulationDTO {
     private final int simulationId;
     //    private final LocalDateTime lastInput;
 //    private final String user;
-//    private final String target;
-//    private final int noOfAttributes;
     private final int ageAircraft;
     private final int noOfPassengers;
     private final String picLicence;

@@ -26,8 +26,6 @@ public class Simulation {
 //    @JoinColumn(name = "user", nullable = false)
 //    private User user;
 
-//    private String target;
-//    private int noOfAttributes;
     private int ageAircraft;
     private int noOfPassengers;
     private String picLicence;
