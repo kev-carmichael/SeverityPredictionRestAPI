@@ -10,7 +10,7 @@ CREATE TABLE user
 CREATE TABLE simulation
 (
     simulation_id integer primary key auto_increment,
-    last_input datetime not null,
+    last_input varchar(50) not null,
     #user integer not null,
     age_aircraft integer not null,
     no_of_passengers integer not null,

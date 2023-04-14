@@ -35,7 +35,7 @@ public class WebSimulationController {
     public String runSimulation8(@ModelAttribute SimulationInput simulationInput, Model model) {
         LocalDateTime lastInput = LocalDateTime.now();
         SimulationInputDTO simulationInputDTO = new SimulationInputDTO(
-                lastInput,
+                lastInput.toString(),
                 Integer.parseInt(simulationInput.getText0()),
                 Integer.parseInt(simulationInput.getText1()),
                 simulationInput.getText2(),
@@ -65,7 +65,7 @@ public class WebSimulationController {
     public String runSimulation9(@ModelAttribute SimulationInput simulationInput, Model model) {
         LocalDateTime lastInput = LocalDateTime.now();
         SimulationInputDTO simulationInputDTO = new SimulationInputDTO(
-                lastInput,
+                lastInput.toString(),
                 Integer.parseInt(simulationInput.getText0()),
                 Integer.parseInt(simulationInput.getText1()),
                 simulationInput.getText2(),
