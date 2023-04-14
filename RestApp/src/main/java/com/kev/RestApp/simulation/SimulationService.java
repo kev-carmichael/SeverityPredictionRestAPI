@@ -33,6 +33,7 @@ public class SimulationService {
 
         Simulation simulation = new Simulation(
                 size + 1,
+                simulationInputDTO.getLastInput(),
                 simulationInputDTO.getAgeAircraft(),
                 simulationInputDTO.getNoOfPassengers(),
                 simulationInputDTO.getPicLicence(),
@@ -54,6 +55,7 @@ public class SimulationService {
 
         Simulation simulation = new Simulation(
                 size + 1,
+                simulationInputDTO.getLastInput(),
                 simulationInputDTO.getAgeAircraft(),
                 simulationInputDTO.getNoOfPassengers(),
                 simulationInputDTO.getPicLicence(),

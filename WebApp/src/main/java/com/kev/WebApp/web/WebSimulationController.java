@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 @Controller
@@ -16,9 +17,6 @@ public class WebSimulationController {
     public String selectSimulationType() {
         return "index";
     }
-
-
-
 
     @GetMapping(path = "/web/simulation/run8")
     public String runSimulation8(Model model) {
@@ -35,7 +33,9 @@ public class WebSimulationController {
 
     @PostMapping(path = "/web/simulation/run8")
     public String runSimulation8(@ModelAttribute SimulationInput simulationInput, Model model) {
+        LocalDateTime lastInput = LocalDateTime.now();
         SimulationInputDTO simulationInputDTO = new SimulationInputDTO(
+                lastInput,
                 Integer.parseInt(simulationInput.getText0()),
                 Integer.parseInt(simulationInput.getText1()),
                 simulationInput.getText2(),
@@ -63,7 +63,9 @@ public class WebSimulationController {
 
     @PostMapping(path = "/web/simulation/run9")
     public String runSimulation9(@ModelAttribute SimulationInput simulationInput, Model model) {
+        LocalDateTime lastInput = LocalDateTime.now();
         SimulationInputDTO simulationInputDTO = new SimulationInputDTO(
+                lastInput,
                 Integer.parseInt(simulationInput.getText0()),
                 Integer.parseInt(simulationInput.getText1()),
                 simulationInput.getText2(),
@@ -88,8 +90,5 @@ public class WebSimulationController {
 
         return "result";
     }
-
-
-
 
 }

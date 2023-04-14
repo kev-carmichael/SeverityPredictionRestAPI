@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 public class SimulationDTO {
 
     private final int simulationId;
-    //    private final LocalDateTime lastInput;
+    private LocalDateTime lastInput; //can't be final
 //    private final String user;
     private final int ageAircraft;
     private final int noOfPassengers;
