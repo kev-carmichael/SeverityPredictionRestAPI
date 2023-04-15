@@ -19,8 +19,8 @@ public class SimulationController {
     private final DTOFactory dtoFactory;
 
     @GetMapping(path="/all")
-    public List<SimulationDTO> getSimulationList(){
-        return simulationService.getSimulationList();
+    public SimulationDTO getSimulationList(){
+        return simulationService.getSimulationList().get(0);
     }
 
     @PostMapping(path = "/run8")

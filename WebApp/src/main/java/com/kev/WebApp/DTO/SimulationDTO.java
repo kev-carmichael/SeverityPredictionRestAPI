@@ -58,5 +58,15 @@ public class SimulationDTO {
         this.injurySeverity = injurySeverity;
     }
 
+    @Override
+    public String toString()
+    {
+        return String.format(
+                "%s, %s",
+                picLicence,
+                accidentSeverity);
+    }
+
+
 
 }
