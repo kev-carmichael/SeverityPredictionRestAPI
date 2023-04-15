@@ -62,9 +62,10 @@ public class SimulationDTO {
     public String toString()
     {
         return String.format(
-                "%s, %s",
-                picLicence,
-                accidentSeverity);
+                "%s, %s,%s, %s,%s, %s,%s, %s,%s, %s,%s, %s,%s",
+                simulationId,lastInput,ageAircraft,noOfPassengers,
+                picLicence, picAge, totalHrs, typeHrs, ninetyDayHrs,
+                twentyEightDayHrs, dayOfWeek, accidentSeverity, injurySeverity);
     }
 
 
