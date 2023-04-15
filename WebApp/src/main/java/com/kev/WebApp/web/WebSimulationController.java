@@ -19,7 +19,6 @@ public class WebSimulationController {
         return "index";
     }
 
-
     @GetMapping(path = "/web/simulation/run8")
     public String runSimulation8(Model model) {
         model.addAttribute("simulationInput", new SimulationInput());
@@ -31,7 +30,6 @@ public class WebSimulationController {
         model.addAttribute("simulationInput", new SimulationInput());
         return "enter9values";
     }
-
 
     @PostMapping(path = "/web/simulation/run8")
     public String runSimulation8(@ModelAttribute SimulationInput simulationInput, Model model) {
@@ -93,26 +91,6 @@ public class WebSimulationController {
         return "result";
     }
 
-    /*@GetMapping(path = "/web/simulation/all")
-    public String getSimulationList() {
-        return "all";
-    }*/
-
-
-    /*@GetMapping(path = "/web/simulation/all")
-    public List<SimulationDTO> getSimulationList() {
-
-        SimulationDTOList response = new RestTemplateBuilder()
-                .build()
-                .getForObject(
-                        "http://localhost:8080/rest/simulation/all",
-                        SimulationDTOList.class);
-
-        List<SimulationDTO> list = response.getList();
-        System.out.println(list);
-        return list;
-    }*/
-
     @GetMapping(path = "/web/simulation/all")
     public String getSimulationList(Model model) {
 
@@ -126,6 +104,27 @@ public class WebSimulationController {
         String listString = "";
         for (SimulationDTO simulationDTO : list){
             listString += simulationDTO.toString();
+        }
+        model.addAttribute(
+                "simulationResult",
+                new SimulationResult("", listString));
+
+        return "all";
+    }
+
+    @GetMapping(path = "/web/user/all")
+    public String getUserList(Model model) {
+
+        UserDTOList response = new RestTemplateBuilder()
+                .build()
+                .getForObject(
+                        "http://localhost:8080/rest/user/all",
+                        UserDTOList.class);
+
+        List<UserDTO> list = response.getList();
+        String listString = "";
+        for (UserDTO userDTO : list){
+            listString += userDTO.toString();
         }
         model.addAttribute(
                 "simulationResult",
