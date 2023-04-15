@@ -116,15 +116,21 @@ public class WebSimulationController {
     @GetMapping(path = "/web/simulation/all")
     public String getSimulationList(Model model) {
 
-        SimulationDTO response = new RestTemplateBuilder()
+        SimulationDTOList response = new RestTemplateBuilder()
                 .build()
                 .getForObject(
                         "http://localhost:8080/rest/simulation/all",
-                        SimulationDTO.class);
+                        SimulationDTOList.class);
 
+        List<SimulationDTO> list = response.getList();
+        String listString = "";
+        for (SimulationDTO simulationDTO : list){
+            listString += simulationDTO.toString();
+        }
         model.addAttribute(
                 "simulationResult",
-                new SimulationResult("", response.toString()));
+                new SimulationResult("", listString));
+
         return "all";
     }
 
