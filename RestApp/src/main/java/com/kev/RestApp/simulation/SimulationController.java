@@ -25,6 +25,12 @@ public class SimulationController {
         return simulationDTOList;
     }
 
+    /*@GetMapping(path="/all")
+    public SimulationDTO getSimulationById(int simulationId){
+            SimulationDTO simulationDTO = new SimulationDTO(simulationService.getSimulation());
+        return simulationDTO;
+    }*/
+
     @PostMapping(path = "/run8")
     public SimulationDTO addSimulation8
             (@RequestBody SimulationInputDTO simulationInputDTO) throws Exception {

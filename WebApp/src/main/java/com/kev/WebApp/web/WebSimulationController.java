@@ -101,13 +101,24 @@ public class WebSimulationController {
                         SimulationDTOList.class);
 
         List<SimulationDTO> list = response.getList();
-        String listString = "";
-        for (SimulationDTO simulationDTO : list){
-            listString += simulationDTO.toString();
-        }
-        model.addAttribute(
-                "simulationResult",
-                new SimulationResult("", listString));
+            model.addAttribute(
+                    "kevCollection", list);
+
+        return "all";
+    }
+
+    @GetMapping(path = "/web/simulation/update")
+    public String updateSimulation(Model model) {
+
+        SimulationDTOList response = new RestTemplateBuilder()
+                .build()
+                .getForObject(
+                        "http://localhost:8080/rest/simulation/all",
+                        SimulationDTOList.class);
+
+        List<SimulationDTO> list = response.getList();
+            model.addAttribute(
+                    "kevCollection", list);
 
         return "all";
     }
@@ -123,7 +134,7 @@ public class WebSimulationController {
 
         List<UserDTO> list = response.getList();
         String listString = "";
-        for (UserDTO userDTO : list){
+        for (UserDTO userDTO : list) {
             listString += userDTO.toString();
         }
         model.addAttribute(

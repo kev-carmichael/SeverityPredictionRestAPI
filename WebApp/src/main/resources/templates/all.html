@@ -6,7 +6,22 @@
 </head>
 <body>
 <h1>All Simulation Records:</h1>
-<p th:text="${simulationResult.getResults()}" />
+<table>
+    <thead>
+    <tr>
+        <th> PIC Licence </th>
+        <th> Accident Severity </th>
+        <th> Update Simulation</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="simulationDTO : ${kevCollection}">
+        <td><span th:text="${simulationDTO.getPicLicence()}"> PIC Licence </span></td>
+        <td><span th:text="${simulationDTO.getAccidentSeverity()}"> Accident Severity </span></td>
+        <td><a class="btn-severity" href="update" target="blank">Update</a></td>
 
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
