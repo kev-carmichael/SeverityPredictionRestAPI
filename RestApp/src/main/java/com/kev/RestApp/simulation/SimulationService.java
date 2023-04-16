@@ -28,6 +28,10 @@ public class SimulationService {
         return list;
     }
 
+    public Simulation getSimulationById(int simulationId) {
+        return simulationRepository.findById(simulationId).orElse(null);
+    }
+
     public Simulation addSimulation8(SimulationInputDTO simulationInputDTO) throws Exception {
         int size = simulationRepository.findAll().size();
 

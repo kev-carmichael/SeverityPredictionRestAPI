@@ -25,11 +25,10 @@ public class SimulationController {
         return simulationDTOList;
     }
 
-    /*@GetMapping(path="/all")
-    public SimulationDTO getSimulationById(int simulationId){
-            SimulationDTO simulationDTO = new SimulationDTO(simulationService.getSimulation());
-        return simulationDTO;
-    }*/
+    @GetMapping(path="/{id}")
+    public SimulationDTO getSimulationById(@PathVariable(name = "id") int simulationId){
+        return dtoFactory.createDTO(simulationService.getSimulationById(simulationId));
+    }
 
     @PostMapping(path = "/run8")
     public SimulationDTO addSimulation8

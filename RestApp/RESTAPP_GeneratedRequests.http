@@ -5,6 +5,9 @@ GET http://localhost:8080/rest/user/all
 GET http://localhost:8080/rest/simulation/all
 
 ###
+GET http://localhost:8080/rest/simulation/2
+
+###
 POST http://localhost:8080/rest/simulation/run8
 Content-Type: application/json
 

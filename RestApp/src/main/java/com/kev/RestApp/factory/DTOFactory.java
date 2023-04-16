@@ -29,6 +29,12 @@ public class DTOFactory {
     }
 
     public SimulationDTO createDTO(Simulation simulation) {
+
+        if (simulation == null)
+        {
+            return null;
+        }
+
         SimulationDTO simulationDTO =
                 new SimulationDTO(
                         simulation.getSimulationId(),
