@@ -37,3 +37,10 @@ Content-Type: application/json
   "twentyEightDayHrs": 1,
   "dayOfWeek": "Wed"
 }
+
+###
+POST http://localhost:8080/rest/simulation/update/2
+Content-Type: application/text
+
+student
+

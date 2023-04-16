@@ -7,8 +7,10 @@ import com.kev.RestApp.util.Loader;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -17,16 +19,16 @@ public class SimulationService {
     private DTOFactory dtoFactory;
     private final SimulationRepository simulationRepository;
 
-    public List<SimulationDTO> getSimulationList(){
+    public List<SimulationDTO> getSimulationList() {
         List<SimulationDTO> list = new ArrayList<>();
-        for (Simulation simulation : simulationRepository.findAll()){
+        for (Simulation simulation : simulationRepository.findAll()) {
             SimulationDTO simulationDTO = dtoFactory.createDTO(simulation);
             list.add(simulationDTO);
         }
         return list;
     }
 
-    public Simulation addSimulation8(SimulationInputDTO simulationInputDTO) throws Exception{
+    public Simulation addSimulation8(SimulationInputDTO simulationInputDTO) throws Exception {
         int size = simulationRepository.findAll().size();
 
         Loader loader = new Loader();
@@ -48,7 +50,7 @@ public class SimulationService {
         return simulationRepository.save(simulation);
     }
 
-    public Simulation addSimulation9(SimulationInputDTO simulationInputDTO) throws Exception{
+    public Simulation addSimulation9(SimulationInputDTO simulationInputDTO) throws Exception {
         int size = simulationRepository.findAll().size();
 
         Loader loader = new Loader();
@@ -68,6 +70,19 @@ public class SimulationService {
                 null,
                 loader.load9(simulationInputDTO));
         return simulationRepository.save(simulation);
+    }
+
+    public Simulation updateSimulation(int simulationId, String picLicence) {
+        Optional<Simulation> originalSimulation = simulationRepository.findById(simulationId);
+
+        if (!originalSimulation.isPresent()) {
+            return null;
+        }
+
+        Simulation simulationEntity = originalSimulation.get();
+        simulationEntity.setPicLicence(picLicence);
+        return simulationRepository.save(simulationEntity);
+
     }
 
 

@@ -7,6 +7,7 @@ import com.kev.RestApp.util.Loader;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.Min;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +36,13 @@ public class SimulationController {
             (@RequestBody SimulationInputDTO simulationInputDTO) throws Exception {
         return dtoFactory.createDTO(simulationService.addSimulation9(simulationInputDTO));
     }
+
+    @PostMapping(path = "/update/{id}")
+    public SimulationDTO updateSimulation(
+            @PathVariable(name = "id") int simulationId, @RequestBody String picLicence) {
+        return dtoFactory.updateDTO(simulationService.updateSimulation(simulationId, picLicence));
+    }
+
 
 
 

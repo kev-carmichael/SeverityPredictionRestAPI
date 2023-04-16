@@ -112,7 +112,7 @@ public class WebSimulationController {
         return "all";
     }
 
-    @GetMapping(path = "/web/user/all")
+    @GetMapping(path = "/web/user/all") //PUT IN OWN WEBUSERCONTROLLER CLASS
     public String getUserList(Model model) {
 
         UserDTOList response = new RestTemplateBuilder()
@@ -130,7 +130,7 @@ public class WebSimulationController {
                 "simulationResult",
                 new SimulationResult("", listString));
 
-        return "all";
+        return "userlist";
     }
 
 
