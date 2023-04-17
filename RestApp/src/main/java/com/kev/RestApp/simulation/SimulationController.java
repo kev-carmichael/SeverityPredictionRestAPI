@@ -48,6 +48,13 @@ public class SimulationController {
         return dtoFactory.updateDTO(simulationService.updateSimulation(simulationId, picLicence));
     }
 
+    @DeleteMapping(path = "/delete/{id}")
+    public boolean deleteSimulation(@PathVariable(name = "id") int simulationId)
+    {
+        return simulationService.deleteSimulation(simulationId);
+    }
+
+
 
 
 

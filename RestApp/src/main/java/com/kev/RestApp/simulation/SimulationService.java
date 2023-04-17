@@ -89,5 +89,23 @@ public class SimulationService {
 
     }
 
+    public boolean deleteSimulation(int simulationId)
+    {
+        if (simulationRepository.existsById(simulationId))
+        {
+            try
+            {
+                simulationRepository.deleteById(simulationId);
+                return true;
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace(System.err);
+                return false;
+            }
+        }
+        return false;
+    }
+
 
 }
