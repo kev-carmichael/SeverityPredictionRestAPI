@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.Min;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -122,6 +123,25 @@ public class WebSimulationController {
 
         return "update"; //TO DISPLAY ONE RECORD
     }*/
+
+    @DeleteMapping(path = "/web/simulation/delete/{id}")
+    //@PathVariable("customerid")
+    //@Min(value = 1, message = "customerId must be greater than zero") int customerid
+    public String deleteSimulation(@PathVariable("id") int simulationId, Model model) {
+
+        Boolean response = new RestTemplateBuilder()
+                .build()
+                .getForObject(
+                        "http://localhost:8080/rest/simulation/delete/{id}",
+                        Boolean.class);
+
+        String deleted = response.toString();
+        model.addAttribute(
+                "simulationResult",
+                new SimulationResult("", deleted));
+
+        return "delete";
+    }
 
     @GetMapping(path = "/web/user/all") //PUT IN OWN WEBUSERCONTROLLER CLASS
     public String getUserList(Model model) {
