@@ -107,21 +107,21 @@ public class WebSimulationController {
         return "all";
     }
 
-    @GetMapping(path = "/web/simulation/update")
-    public String updateSimulation(Model model) {
+    /*@GetMapping(path = "/web/simulation/{id}")
+    public String getSimulationById(Model model) {
 
-        SimulationDTOList response = new RestTemplateBuilder()
+        SimulationDTO response = new RestTemplateBuilder()
                 .build()
                 .getForObject(
-                        "http://localhost:8080/rest/simulation/all",
-                        SimulationDTOList.class);
+                        "http://localhost:8080/rest/simulation/{id}",
+                        SimulationDTO.class);
 
         List<SimulationDTO> list = response.getList();
             model.addAttribute(
                     "kevCollection", list);
 
-        return "all";
-    }
+        return "update"; //TO DISPLAY ONE RECORD
+    }*/
 
     @GetMapping(path = "/web/user/all") //PUT IN OWN WEBUSERCONTROLLER CLASS
     public String getUserList(Model model) {

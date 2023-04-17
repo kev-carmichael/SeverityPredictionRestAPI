@@ -9,6 +9,7 @@
 <table>
     <thead>
     <tr>
+        <th> Simulation Id </th>
         <th> PIC Licence </th>
         <th> Accident Severity </th>
         <th> Update Simulation</th>
@@ -16,9 +17,10 @@
     </thead>
     <tbody>
     <tr th:each="simulationDTO : ${kevCollection}">
+        <td><span th:text="${simulationDTO.getSimulationId()}"> Simulation Id </span></td>
         <td><span th:text="${simulationDTO.getPicLicence()}"> PIC Licence </span></td>
         <td><span th:text="${simulationDTO.getAccidentSeverity()}"> Accident Severity </span></td>
-        <td><a class="btn-severity" href="update" target="blank">Update</a></td>
+        <td><a class="btn-severity" href="update" target="_self">Update</a></td>
 
     </tr>
     </tbody>
