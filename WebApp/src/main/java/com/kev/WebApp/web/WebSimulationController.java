@@ -125,8 +125,6 @@ public class WebSimulationController {
     }*/
 
     @DeleteMapping(path = "/web/simulation/delete/{id}")
-    //@PathVariable("customerid")
-    //@Min(value = 1, message = "customerId must be greater than zero") int customerid
     public String deleteSimulation(@PathVariable("id") int simulationId, Model model) {
 
         Boolean response = new RestTemplateBuilder()
