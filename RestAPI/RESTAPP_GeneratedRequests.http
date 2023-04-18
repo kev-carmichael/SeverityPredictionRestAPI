@@ -59,4 +59,21 @@ Content-Type: application/json
 }
 
 ###
+POST http://localhost:8080/rest/simulation/update/1
+Content-Type: application/json
+
+{
+  "lastInput": "2023-04-17 11:00:00",
+  "ageAircraft": 11,
+  "noOfPassengers": 1,
+  "picLicence": "private pilot licence",
+  "picAge": 31,
+  "totalHrs": 1111,
+  "typeHrs": 11,
+  "ninetyDayHrs": 111,
+  "twentyEightDayHrs": 11,
+  "dayOfWeek": null
+}
+
+###
 DELETE http://localhost:8080/rest/simulation/delete/3

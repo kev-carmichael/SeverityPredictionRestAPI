@@ -77,7 +77,7 @@ public class SimulationService {
         return simulationRepository.save(simulation);
     }
 
-    public Simulation updateSimulation9(int simulationId, SimulationInputDTO simulationInputDTO) throws Exception {
+    public Simulation updateSimulation(int simulationId, SimulationInputDTO simulationInputDTO) throws Exception {
         Optional<Simulation> originalSimulation = simulationRepository.findById(simulationId);
 
         if (!originalSimulation.isPresent()) {
@@ -97,10 +97,12 @@ public class SimulationService {
         simulationEntity.setTypeHrs(simulationInputDTO.getTypeHrs());
         simulationEntity.setNinetyDayHrs(simulationInputDTO.getNinetyDayHrs());
         simulationEntity.setTwentyEightDayHrs(simulationInputDTO.getTwentyEightDayHrs());
-        simulationEntity.setDayOfWeek(simulationInputDTO.getDayOfWeek());
-
-        //INPUT SEVERITY RESULT FOR UPDATED VARS
-        simulationEntity.setInjurySeverity(loader.load9(simulationInputDTO));
+        if(simulationInputDTO.getDayOfWeek() != null) {
+            simulationEntity.setDayOfWeek(simulationInputDTO.getDayOfWeek());
+            simulationEntity.setInjurySeverity(loader.load9(simulationInputDTO));
+        } else {
+            simulationEntity.setAccidentSeverity(loader.load8(simulationInputDTO));
+        }
 
         return simulationRepository.save(simulationEntity);
     }
