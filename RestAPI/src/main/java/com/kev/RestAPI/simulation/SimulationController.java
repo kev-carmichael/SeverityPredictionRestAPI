@@ -38,8 +38,8 @@ public class SimulationController {
 
     @PostMapping(path = "/update/{id}")
     public SimulationDTO updateSimulation(
-            @PathVariable(name = "id") int simulationId, @RequestBody String picLicence) {
-        return dtoFactory.updateDTO(simulationService.updateSimulation(simulationId, picLicence));
+            @PathVariable(name = "id") int simulationId, @RequestBody String picLicence) throws Exception {
+        return dtoFactory.updateDTO(simulationService.updateSimulation9(simulationId, picLicence));
     }
 
     @DeleteMapping(path = "/delete/{id}")

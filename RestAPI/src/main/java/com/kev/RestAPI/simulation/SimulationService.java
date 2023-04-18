@@ -6,9 +6,12 @@ import com.kev.RestAPI.util.Loader;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import static com.fasterxml.jackson.databind.type.LogicalType.DateTime;
 
 @Service
 @AllArgsConstructor
@@ -74,7 +77,7 @@ public class SimulationService {
         return simulationRepository.save(simulation);
     }
 
-    public Simulation updateSimulation(int simulationId, String picLicence) {
+    public Simulation updateSimulation9(int simulationId, String picLicence) throws Exception {
         Optional<Simulation> originalSimulation = simulationRepository.findById(simulationId);
 
         if (!originalSimulation.isPresent()) {
@@ -82,9 +85,29 @@ public class SimulationService {
         }
 
         Simulation simulationEntity = originalSimulation.get();
-        simulationEntity.setPicLicence(picLicence);
-        return simulationRepository.save(simulationEntity);
+        Loader loader = new Loader();
 
+        //INPUT CHANGES INTO ENTITY (EXCEPT SEVERITY RESULT)
+        simulationEntity.setLastInput(LocalDateTime.now().toString());
+        simulationEntity.setPicLicence(picLicence);
+
+
+        SimulationInputDTO simulationInputDTO = new SimulationInputDTO(
+                simulationEntity.getLastInput(),
+                simulationEntity.getAgeAircraft(),
+                simulationEntity.getNoOfPassengers(),
+                picLicence,
+                simulationEntity.getPicAge(),
+                simulationEntity.getTotalHrs(),
+                simulationEntity.getTypeHrs(),
+                simulationEntity.getNinetyDayHrs(),
+                simulationEntity.getTwentyEightDayHrs(),
+                simulationEntity.getDayOfWeek());
+
+        //INPUT SEVERITY RESULT INTO ENTITY
+        simulationEntity.setInjurySeverity(loader.load9(simulationInputDTO));
+
+        return simulationRepository.save(simulationEntity);
     }
 
     public boolean deleteSimulation(int simulationId)
