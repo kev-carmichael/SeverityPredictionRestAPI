@@ -77,7 +77,7 @@ public class SimulationService {
         return simulationRepository.save(simulation);
     }
 
-    public Simulation updateSimulation9(int simulationId, String picLicence) throws Exception {
+    public Simulation updateSimulation9(int simulationId, SimulationInputDTO simulationInputDTO) throws Exception {
         Optional<Simulation> originalSimulation = simulationRepository.findById(simulationId);
 
         if (!originalSimulation.isPresent()) {
@@ -87,24 +87,19 @@ public class SimulationService {
         Simulation simulationEntity = originalSimulation.get();
         Loader loader = new Loader();
 
-        //INPUT CHANGES INTO ENTITY (EXCEPT SEVERITY RESULT)
+        //INPUT UPDATE CHANGES INTO ENTITY
         simulationEntity.setLastInput(LocalDateTime.now().toString());
-        simulationEntity.setPicLicence(picLicence);
+        simulationEntity.setAgeAircraft(simulationInputDTO.getAgeAircraft());
+        simulationEntity.setNoOfPassengers(simulationInputDTO.getNoOfPassengers());
+        simulationEntity.setPicLicence(simulationInputDTO.getPicLicence());
+        simulationEntity.setPicAge(simulationInputDTO.getPicAge());
+        simulationEntity.setTotalHrs(simulationInputDTO.getTotalHrs());
+        simulationEntity.setTypeHrs(simulationInputDTO.getTypeHrs());
+        simulationEntity.setNinetyDayHrs(simulationInputDTO.getNinetyDayHrs());
+        simulationEntity.setTwentyEightDayHrs(simulationInputDTO.getTwentyEightDayHrs());
+        simulationEntity.setDayOfWeek(simulationInputDTO.getDayOfWeek());
 
-
-        SimulationInputDTO simulationInputDTO = new SimulationInputDTO(
-                simulationEntity.getLastInput(),
-                simulationEntity.getAgeAircraft(),
-                simulationEntity.getNoOfPassengers(),
-                picLicence,
-                simulationEntity.getPicAge(),
-                simulationEntity.getTotalHrs(),
-                simulationEntity.getTypeHrs(),
-                simulationEntity.getNinetyDayHrs(),
-                simulationEntity.getTwentyEightDayHrs(),
-                simulationEntity.getDayOfWeek());
-
-        //INPUT SEVERITY RESULT INTO ENTITY
+        //INPUT SEVERITY RESULT FOR UPDATED VARS
         simulationEntity.setInjurySeverity(loader.load9(simulationInputDTO));
 
         return simulationRepository.save(simulationEntity);

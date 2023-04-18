@@ -37,5 +37,5 @@ VALUES ('adam@gmail.com'),
 
 INSERT INTO simulation (last_input, age_aircraft, no_of_passengers, pic_licence, pic_age, total_hrs, type_hrs, ninety_day_hrs, twenty_eight_day_hrs, day_of_week, accident_severity, injury_severity)
 VALUES ('2023-01-01 01:11:11', 15, 0, 'student', 21, 35, 35, 24, 8, null, 'non-severe', null),
-       ('2023-02-02 02:22:22', 25, 1, 'airline transport pilot licence', 52, 10000, 2, 180, 60, 'Wed', null, 'severe'),
+       ('2023-02-02 02:22:22', 25, 1, 'airline transport pilot licence', 52, 10000, 2, 180, 60, 'Wed', null, 'minor/none'),
        ('2023-03-03 03:33:33', 35, 1, 'private pilot licence', 67, 3000, 2100, 24, 8, null, 'non-severe', null);
