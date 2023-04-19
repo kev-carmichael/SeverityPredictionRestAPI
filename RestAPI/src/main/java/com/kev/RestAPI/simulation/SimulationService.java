@@ -2,6 +2,7 @@ package com.kev.RestAPI.simulation;
 
 import com.kev.RestAPI.entity.Simulation;
 import com.kev.RestAPI.exception.LastInputDateIsAfterDateTodayException;
+import com.kev.RestAPI.exception.TwentyEightDayHrsGreaterThan90DayHrsException;
 import com.kev.RestAPI.exception.TypeHrs90DayHrsOr28DayHrsGreaterThanTotalHrsException;
 import com.kev.RestAPI.factory.DTOFactory;
 import com.kev.RestAPI.util.Loader;
@@ -47,9 +48,14 @@ public class SimulationService {
         }
 
         //check that type, 90-day and 28-day hrs are not more than total hrs
-        if(  (simulationInputDTO.getTypeHrs()>simulationInputDTO.getTotalHrs() || simulationInputDTO.getNinetyDayHrs()>simulationInputDTO.getTotalHrs()) ||
+        if((simulationInputDTO.getTypeHrs()>simulationInputDTO.getTotalHrs() || simulationInputDTO.getNinetyDayHrs()>simulationInputDTO.getTotalHrs()) ||
                         simulationInputDTO.getTwentyEightDayHrs()>simulationInputDTO.getTotalHrs() ){
                     throw new TypeHrs90DayHrsOr28DayHrsGreaterThanTotalHrsException();
+        }
+
+        //check that 28-day hrs are not more than 90-day hrs
+        if(simulationInputDTO.getTwentyEightDayHrs()>simulationInputDTO.getNinetyDayHrs() ){
+                    throw new TwentyEightDayHrsGreaterThan90DayHrsException();
         }
 
         Loader loader = new Loader();
@@ -87,6 +93,11 @@ public class SimulationService {
             throw new TypeHrs90DayHrsOr28DayHrsGreaterThanTotalHrsException();
         }
 
+        //check that 28-day hrs are not more than 90-day hrs
+        if(simulationInputDTO.getTwentyEightDayHrs()>simulationInputDTO.getNinetyDayHrs() ){
+            throw new TwentyEightDayHrsGreaterThan90DayHrsException();
+        }
+
         Loader loader = new Loader();
 
         Simulation simulation = new Simulation(
@@ -121,6 +132,11 @@ public class SimulationService {
         if(  (simulationInputDTO.getTypeHrs()>simulationInputDTO.getTotalHrs() || simulationInputDTO.getNinetyDayHrs()>simulationInputDTO.getTotalHrs()) ||
                 simulationInputDTO.getTwentyEightDayHrs()>simulationInputDTO.getTotalHrs() ){
             throw new TypeHrs90DayHrsOr28DayHrsGreaterThanTotalHrsException();
+        }
+
+        //check that 28-day hrs are not more than 90-day hrs
+        if(simulationInputDTO.getTwentyEightDayHrs()>simulationInputDTO.getNinetyDayHrs() ){
+            throw new TwentyEightDayHrsGreaterThan90DayHrsException();
         }
 
         //INPUT UPDATE CHANGES INTO ENTITY
