@@ -6,6 +6,7 @@ import com.kev.RestAPI.util.Loader;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -89,12 +90,9 @@ public class SimulationService {
 
         Simulation simulationEntity = originalSimulation.get();
         Loader loader = new Loader();
-        LocalDateTime localDateTimeNow = LocalDateTime.now();
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String lastInput = localDateTimeNow.format(dateTimeFormatter);
 
         //INPUT UPDATE CHANGES INTO ENTITY
-        simulationEntity.setLastInput(lastInput);
+        simulationEntity.setLastInput(LocalDate.now());
         //user id unchanged
         simulationEntity.setAgeAircraft(simulationInputDTO.getAgeAircraft());
         simulationEntity.setNoOfPassengers(simulationInputDTO.getNoOfPassengers());

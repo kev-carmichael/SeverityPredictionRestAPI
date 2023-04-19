@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -18,7 +20,7 @@ public class Simulation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int simulationId;
 
-    private String lastInput;
+    private LocalDate lastInput;
 
 //    @ManyToOne
 //    @JoinColumn(name = "user", nullable = false)

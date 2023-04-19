@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import javax.validation.constraints.*;
+import java.time.LocalDate;
 
 
 @AllArgsConstructor
@@ -16,7 +17,7 @@ public class SimulationDTO {
     private final int simulationId;
 
 
-    private final String lastInput;
+    private final LocalDate lastInput;
 //    private final String user;
     private final int ageAircraft;
     private final int noOfPassengers;
