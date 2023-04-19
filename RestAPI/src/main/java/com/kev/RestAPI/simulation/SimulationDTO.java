@@ -3,6 +3,8 @@ package com.kev.RestAPI.simulation;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import javax.validation.constraints.*;
+
 
 @AllArgsConstructor
 //@RequiredArgsConstructor
@@ -10,8 +12,10 @@ import lombok.Setter;
 @Setter
 
 public class SimulationDTO {
-
+    @Min(value = 1, message = "Id must be greater than zero")
     private final int simulationId;
+
+
     private final String lastInput;
 //    private final String user;
     private final int ageAircraft;

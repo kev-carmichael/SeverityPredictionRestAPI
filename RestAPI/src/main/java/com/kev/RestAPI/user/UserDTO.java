@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @AllArgsConstructor
-//@RequiredArgsConstructor - NEED TO UNCOMMENT THIS WHEN ADD MORE THAN 2 FIELDS
+//@RequiredArgsConstructor - NEED TO UNCOMMENT THIS IF ADD MORE THAN 2 FIELDS
 @Getter
 @Setter
 
