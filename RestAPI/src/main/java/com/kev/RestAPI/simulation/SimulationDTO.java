@@ -1,5 +1,6 @@
 package com.kev.RestAPI.simulation;
 
+import com.kev.RestAPI.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,7 +19,9 @@ public class SimulationDTO {
 
     @NotNull(message = "lastInput date must be present")
     private final LocalDate lastInput; //also covered with own bespoke exception class
-//    private final String user;
+
+    @NotNull(message = "user must be present")
+    private final User user;
 
     @Min(value = 0, message = "ageAircraft must be equal to or higher than 0")
     @Max(value = 88, message = "ageAircraft must be equal to or less than 88")

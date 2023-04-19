@@ -22,9 +22,9 @@ public class Simulation {
 
     private LocalDate lastInput;
 
-//    @ManyToOne
-//    @JoinColumn(name = "user", nullable = false)
-//    private User user;
+    @ManyToOne
+    @JoinColumn(name = "user", nullable = false)
+    private User user;
 
     private int ageAircraft;
     private int noOfPassengers;

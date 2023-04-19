@@ -1,10 +1,12 @@
 package com.kev.RestAPI.simulation;
 
 import com.kev.RestAPI.entity.Simulation;
+import com.kev.RestAPI.entity.User;
 import com.kev.RestAPI.exception.LastInputDateIsAfterDateTodayException;
 import com.kev.RestAPI.exception.TwentyEightDayHrsGreaterThan90DayHrsException;
 import com.kev.RestAPI.exception.TypeHrs90DayHrsOr28DayHrsGreaterThanTotalHrsException;
 import com.kev.RestAPI.factory.DTOFactory;
+import com.kev.RestAPI.user.UserRepository;
 import com.kev.RestAPI.util.Loader;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,8 @@ public class SimulationService {
     private DTOFactory dtoFactory;
     private final SimulationRepository simulationRepository;
 
+    private final UserRepository userRepository;
+
     public List<SimulationDTO> getSimulationList() {
         List<SimulationDTO> list = new ArrayList<>();
         for (Simulation simulation : simulationRepository.findAll()) {
@@ -39,6 +43,9 @@ public class SimulationService {
     }
 
     public Simulation addSimulation8(SimulationInputDTO simulationInputDTO) throws Exception {
+        Optional<User> user = userRepository.
+                findById(simulationInputDTO.getUser().getUserId());
+
         int size = simulationRepository.findAll().size();
 
         //check date of last input is not after today's date
@@ -60,22 +67,27 @@ public class SimulationService {
 
         Loader loader = new Loader();
 
-        Simulation simulation = new Simulation(
-                size + 1,
-                simulationInputDTO.getLastInput(),
-//                simulationInputDTO.getUser(),
-                simulationInputDTO.getAgeAircraft(),
-                simulationInputDTO.getNoOfPassengers(),
-                simulationInputDTO.getPicLicence(),
-                simulationInputDTO.getPicAge(),
-                simulationInputDTO.getTotalHrs(),
-                simulationInputDTO.getTypeHrs(),
-                simulationInputDTO.getNinetyDayHrs(),
-                simulationInputDTO.getTwentyEightDayHrs(),
-                null,
-                loader.load8(simulationInputDTO),
-                null);
-        return simulationRepository.save(simulation);
+        //check existing user and save simulation
+        if(user.isPresent()) {
+            Simulation simulation = new Simulation(
+                    size + 1,
+                    simulationInputDTO.getLastInput(),
+                    user.get(),
+                    simulationInputDTO.getAgeAircraft(),
+                    simulationInputDTO.getNoOfPassengers(),
+                    simulationInputDTO.getPicLicence(),
+                    simulationInputDTO.getPicAge(),
+                    simulationInputDTO.getTotalHrs(),
+                    simulationInputDTO.getTypeHrs(),
+                    simulationInputDTO.getNinetyDayHrs(),
+                    simulationInputDTO.getTwentyEightDayHrs(),
+                    null,
+                    loader.load8(simulationInputDTO),
+                    null);
+            return simulationRepository.save(simulation);
+        } else {
+            return null;
+        }
     }
 
     public Simulation addSimulation9(SimulationInputDTO simulationInputDTO) throws Exception {
@@ -103,7 +115,7 @@ public class SimulationService {
         Simulation simulation = new Simulation(
                 size + 1,
                 simulationInputDTO.getLastInput(),
-                //                simulationInputDTO.getUser(),
+                simulationInputDTO.getUser(),
                 simulationInputDTO.getAgeAircraft(),
                 simulationInputDTO.getNoOfPassengers(),
                 simulationInputDTO.getPicLicence(),

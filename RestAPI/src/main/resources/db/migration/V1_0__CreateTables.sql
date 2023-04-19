@@ -11,7 +11,8 @@ CREATE TABLE simulation
 (
     simulation_id integer primary key auto_increment,
     last_input date not null,
-    #user integer not null,
+    user integer not null,
+    foreign key (user) references user(user_id),
     age_aircraft integer not null,
     no_of_passengers integer not null,
     pic_licence varchar(50) not null,
@@ -31,7 +32,7 @@ VALUES ('adam@gmail.com'),
        ('colin@gmail.com');
 
 
-INSERT INTO simulation (last_input, age_aircraft, no_of_passengers, pic_licence, pic_age, total_hrs, type_hrs, ninety_day_hrs, twenty_eight_day_hrs, day_of_week, accident_severity, injury_severity)
-VALUES ('2023-01-01', 15, 0, 'student', 21, 35, 35, 24, 8, null, 'non-severe', null),
-       ('2023-02-02', 25, 1, 'airline transport pilot licence', 52, 10000, 2, 180, 60, 'Wed', null, 'minor/none'),
-       ('2023-03-03', 35, 1, 'private pilot licence', 67, 3000, 2100, 24, 8, null, 'non-severe', null);
+INSERT INTO simulation (last_input, user, age_aircraft, no_of_passengers, pic_licence, pic_age, total_hrs, type_hrs, ninety_day_hrs, twenty_eight_day_hrs, day_of_week, accident_severity, injury_severity)
+VALUES ('2023-01-01', 1, 15, 0, 'student', 21, 35, 35, 24, 8, null, 'non-severe', null),
+       ('2023-02-02', 2, 25, 1, 'airline transport pilot licence', 52, 10000, 2, 180, 60, 'Wed', null, 'minor/none'),
+       ('2023-03-03', 3, 35, 1, 'private pilot licence', 67, 3000, 2100, 24, 8, null, 'non-severe', null);

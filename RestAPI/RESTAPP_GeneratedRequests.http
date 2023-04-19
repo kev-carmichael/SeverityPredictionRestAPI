@@ -13,6 +13,10 @@ Content-Type: application/json
 
 {
   "lastInput": "2022-11-22",
+  "user": {
+    "userId": 3,
+    "email": "colin@gmail.com"
+  },
   "ageAircraft": 25,
   "noOfPassengers": 1,
   "picLicence": "student",
@@ -30,6 +34,10 @@ Content-Type: application/json
 
 {
   "lastInput": "2022-11-22",
+  "user": {
+    "userId": 1,
+    "email": "adam@gmail.com"
+  },
   "ageAircraft": 50,
   "noOfPassengers": 1,
   "picLicence": "airline transport pilot licence",
@@ -47,6 +55,10 @@ Content-Type: application/json
 
 {
   "lastInput": "2023-04-17",
+  "user": {
+    "userId": 2,
+    "email": "bob@gmail.com"
+  },
   "ageAircraft": 22,
   "noOfPassengers": 2,
   "picLicence": "student",
@@ -64,6 +76,10 @@ Content-Type: application/json
 
 {
   "lastInput": "2023-04-17",
+  "user": {
+    "userId": 1,
+    "email": "adam@gmail.com"
+  },
   "ageAircraft": 11,
   "noOfPassengers": 1,
   "picLicence": "private pilot licence",
