@@ -68,6 +68,12 @@ public class SimulationService {
     public Simulation addSimulation9(SimulationInputDTO simulationInputDTO) throws Exception {
         int size = simulationRepository.findAll().size();
 
+        //check date of last input is not after today's date
+        LocalDate now = LocalDate.now();
+        if(simulationInputDTO.getLastInput().isAfter(now)){
+            throw new LastInputDateIsAfterDateTodayException();
+        }
+
         Loader loader = new Loader();
 
         Simulation simulation = new Simulation(
