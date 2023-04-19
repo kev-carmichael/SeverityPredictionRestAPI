@@ -81,6 +81,12 @@ public class SimulationService {
             throw new LastInputDateIsAfterDateTodayException();
         }
 
+        //check that type, 90-day and 28-day hrs are not more than total hrs
+        if(  (simulationInputDTO.getTypeHrs()>simulationInputDTO.getTotalHrs() || simulationInputDTO.getNinetyDayHrs()>simulationInputDTO.getTotalHrs()) ||
+                simulationInputDTO.getTwentyEightDayHrs()>simulationInputDTO.getTotalHrs() ){
+            throw new TypeHrs90DayHrsOr28DayHrsGreaterThanTotalHrsException();
+        }
+
         Loader loader = new Loader();
 
         Simulation simulation = new Simulation(
@@ -110,6 +116,12 @@ public class SimulationService {
 
         Simulation simulationEntity = originalSimulation.get();
         Loader loader = new Loader();
+
+        //check that type, 90-day and 28-day hrs are not more than total hrs
+        if(  (simulationInputDTO.getTypeHrs()>simulationInputDTO.getTotalHrs() || simulationInputDTO.getNinetyDayHrs()>simulationInputDTO.getTotalHrs()) ||
+                simulationInputDTO.getTwentyEightDayHrs()>simulationInputDTO.getTotalHrs() ){
+            throw new TypeHrs90DayHrsOr28DayHrsGreaterThanTotalHrsException();
+        }
 
         //INPUT UPDATE CHANGES INTO ENTITY
         simulationEntity.setLastInput(LocalDate.now());
