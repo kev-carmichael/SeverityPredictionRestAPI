@@ -1,6 +1,7 @@
 package com.kev.RestAPI.simulation;
 
 import com.kev.RestAPI.entity.Simulation;
+import com.kev.RestAPI.exception.LastInputDateIsAfterDateTodayException;
 import com.kev.RestAPI.factory.DTOFactory;
 import com.kev.RestAPI.util.Loader;
 import lombok.AllArgsConstructor;
@@ -37,6 +38,12 @@ public class SimulationService {
 
     public Simulation addSimulation8(SimulationInputDTO simulationInputDTO) throws Exception {
         int size = simulationRepository.findAll().size();
+
+        //check date of last input is not after today's date
+        LocalDate now = LocalDate.now();
+        if(simulationInputDTO.getLastInput().isAfter(now)){
+            throw new LastInputDateIsAfterDateTodayException();
+        }
 
         Loader loader = new Loader();
 
