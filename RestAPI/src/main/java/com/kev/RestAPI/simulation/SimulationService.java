@@ -2,6 +2,7 @@ package com.kev.RestAPI.simulation;
 
 import com.kev.RestAPI.entity.Simulation;
 import com.kev.RestAPI.exception.LastInputDateIsAfterDateTodayException;
+import com.kev.RestAPI.exception.TypeHrs90DayHrsOr28DayHrsGreaterThanTotalHrsException;
 import com.kev.RestAPI.factory.DTOFactory;
 import com.kev.RestAPI.util.Loader;
 import lombok.AllArgsConstructor;
@@ -43,6 +44,12 @@ public class SimulationService {
         LocalDate now = LocalDate.now();
         if(simulationInputDTO.getLastInput().isAfter(now)){
             throw new LastInputDateIsAfterDateTodayException();
+        }
+
+        //check that type, 90-day and 28-day hrs are not more than total hrs
+        if(  (simulationInputDTO.getTypeHrs()>simulationInputDTO.getTotalHrs() || simulationInputDTO.getNinetyDayHrs()>simulationInputDTO.getTotalHrs()) ||
+                        simulationInputDTO.getTwentyEightDayHrs()>simulationInputDTO.getTotalHrs() ){
+                    throw new TypeHrs90DayHrsOr28DayHrsGreaterThanTotalHrsException();
         }
 
         Loader loader = new Loader();
