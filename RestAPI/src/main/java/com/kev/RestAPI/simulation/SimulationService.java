@@ -41,6 +41,7 @@ public class SimulationService {
         Simulation simulation = new Simulation(
                 size + 1,
                 simulationInputDTO.getLastInput(),
+//                simulationInputDTO.getUser(),
                 simulationInputDTO.getAgeAircraft(),
                 simulationInputDTO.getNoOfPassengers(),
                 simulationInputDTO.getPicLicence(),
@@ -63,6 +64,7 @@ public class SimulationService {
         Simulation simulation = new Simulation(
                 size + 1,
                 simulationInputDTO.getLastInput(),
+                //                simulationInputDTO.getUser(),
                 simulationInputDTO.getAgeAircraft(),
                 simulationInputDTO.getNoOfPassengers(),
                 simulationInputDTO.getPicLicence(),
@@ -89,6 +91,7 @@ public class SimulationService {
 
         //INPUT UPDATE CHANGES INTO ENTITY
         simulationEntity.setLastInput(LocalDateTime.now().toString());
+        //user id unchanged
         simulationEntity.setAgeAircraft(simulationInputDTO.getAgeAircraft());
         simulationEntity.setNoOfPassengers(simulationInputDTO.getNoOfPassengers());
         simulationEntity.setPicLicence(simulationInputDTO.getPicLicence());
