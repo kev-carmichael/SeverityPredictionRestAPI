@@ -5,7 +5,8 @@ CREATE TABLE user
 (
     user_id integer primary key auto_increment,
     email varchar(50) not null,
-    password varchar(50) not null
+    password varchar(50) not null,
+    token varchar(50)
 );
 
 CREATE TABLE simulation

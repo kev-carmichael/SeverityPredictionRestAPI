@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 
 @AllArgsConstructor
 //@RequiredArgsConstructor - NEED TO UNCOMMENT THIS IF ADD MORE THAN 2 FIELDS
@@ -20,4 +21,8 @@ public class UserDTO {
 
     @Email(message = "Email is not in the correct format")
     private final String email;
+
+    @NotBlank(message = "Token cannot be blank")
+    private final String token;
+
 }

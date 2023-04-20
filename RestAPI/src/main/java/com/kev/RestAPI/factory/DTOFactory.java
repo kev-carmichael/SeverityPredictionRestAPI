@@ -21,8 +21,8 @@ public class DTOFactory {
         UserDTO userDTO =
                 new UserDTO(
                         user.getUserId(),
-                        user.getEmail()
-        // , user.getToken()
+                        user.getEmail(),
+                        user.getToken()
                 );
         return userDTO;
     }

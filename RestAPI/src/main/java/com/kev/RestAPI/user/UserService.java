@@ -3,6 +3,7 @@ package com.kev.RestAPI.user;
 
 import com.kev.RestAPI.entity.User;
 import com.kev.RestAPI.factory.DTOFactory;
+import com.kev.RestAPI.util.StringHasher;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +18,9 @@ import java.util.List;
 
 public class UserService {
 
-    UserRepository userRepository;
+    private final UserRepository userRepository;
     DTOFactory dtoFactory;
+    private final StringHasher stringHasher;
 
     public List<UserDTO> getUserList() {
         List<UserDTO> list = new ArrayList<>();
@@ -35,16 +37,16 @@ public class UserService {
             return null;
         }
 
-//        String token =
-//                stringHasher.hashString(
-//                        newUserDTO.getEmail() + ":" + LocalDateTime.now());
+        String token =
+                stringHasher.hashString(
+                        newUserDTO.getEmail() + ":" + LocalDateTime.now());
 
         int userSize = userRepository.findAll().size();
         User user = new User(
                 (userSize + 1),
                 newUserDTO.getEmail(),
-                newUserDTO.getPassword()
-//                , token
+                newUserDTO.getPassword(),
+                token
         );
         return userRepository.save(user);
     }
