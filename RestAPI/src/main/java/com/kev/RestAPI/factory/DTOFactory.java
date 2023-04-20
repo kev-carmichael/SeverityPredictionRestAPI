@@ -37,7 +37,8 @@ public class DTOFactory {
                 new SimulationDTO(
                         simulation.getSimulationId(),
                         simulation.getLastInput(),
-                        simulation.getUser(),
+                        createDTO(simulation.getUser()),
+//                        simulation.getUser(),
                         simulation.getAgeAircraft(),
                         simulation.getNoOfPassengers(),
                         simulation.getPicLicence(),
@@ -61,7 +62,8 @@ public class DTOFactory {
                 new SimulationDTO(
                         simulation.getSimulationId(),
                         simulation.getLastInput(),
-                        simulation.getUser(),
+                        createDTO(simulation.getUser()),
+//                        simulation.getUser(),
                         simulation.getAgeAircraft(),
                         simulation.getNoOfPassengers(),
                         simulation.getPicLicence(),
