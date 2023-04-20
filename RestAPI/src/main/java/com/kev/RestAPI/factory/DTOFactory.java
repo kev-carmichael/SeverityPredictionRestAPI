@@ -18,11 +18,12 @@ public class DTOFactory {
 
 
     public UserDTO createDTO(User user) {
-        //Needs try and catch with return createDTOWithoutSimulation(user);
         UserDTO userDTO =
                 new UserDTO(
                         user.getUserId(),
-                        user.getEmail());
+                        user.getEmail()
+        // , user.getToken()
+                );
         return userDTO;
     }
 

@@ -1,6 +1,7 @@
 package com.kev.RestAPI.user;
 
 
+import com.kev.RestAPI.factory.DTOFactory;
 import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     private final UserService userService;
+    private final DTOFactory dtoFactory;
 
     @GetMapping(path = "/all")
     public UserDTOList getUserList() {
@@ -21,6 +23,11 @@ public class UserController {
         return userDTOList;
     }
 
+    @PostMapping(path = "/add")
+    public UserDTO addUser(@RequestBody NewUserDTO newUserDTO)
+    {
+        return dtoFactory.createDTO(userService.addUser(newUserDTO));
+    }
 
 
 

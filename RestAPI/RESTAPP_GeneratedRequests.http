@@ -93,3 +93,13 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:8080/rest/simulation/delete/3
+
+###
+POST http://localhost:8080/rest/user/add
+Content-Type: application/json
+
+{
+  "email": "dave@gmail.com",
+  "password": "password4"
+}
+
