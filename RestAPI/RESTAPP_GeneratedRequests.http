@@ -114,14 +114,18 @@ Content-Type: application/json
 
 ###
 POST http://localhost:8080/rest/user/logout/4
-Authorization: -51b1deb417537a7c7a37f12a9cd8c6f9
+Authorization: -4634574d522537163d84e387d6275acd
 
 ###
 POST http://localhost:8080/admin/login
 Content-Type: application/json
 
 {
-  "email" : "admin3@gmail.com",
-  "password" : "passwordadmin3"
+  "email" : "admin1@gmail.com",
+  "password" : "passwordadmin1"
 }
+
+###
+POST http://localhost:8080/admin/logout/1
+Authorization: 4d27652d2142a9edfde419cace0bee24
 

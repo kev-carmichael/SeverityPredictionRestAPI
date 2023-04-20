@@ -28,5 +28,12 @@ public class AdminService {
         return null;
     }
 
+    public void clearToken(int adminId) {
+        Admin admin = adminRepository.findById(adminId).orElse(null);
+        if (admin != null) {
+            admin.setToken(null);
+            adminRepository.save(admin);
+        }
+    }
 
 }
