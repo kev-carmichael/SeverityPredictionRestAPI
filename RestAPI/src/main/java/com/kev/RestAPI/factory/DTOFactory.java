@@ -3,8 +3,10 @@ package com.kev.RestAPI.factory;
 import com.kev.RestAPI.entity.Simulation;
 import com.kev.RestAPI.entity.User;
 import com.kev.RestAPI.simulation.SimulationDTO;
+import com.kev.RestAPI.user.NewUserAndCheckCredentialsDTO;
 import com.kev.RestAPI.user.UserDTO;
 import com.kev.RestAPI.user.UserRepository;
+import com.kev.RestAPI.user.UserSafeOutputDTO;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -27,6 +29,15 @@ public class DTOFactory {
         return userDTO;
     }
 
+    public UserSafeOutputDTO createSafeDTO(User user) {
+        UserSafeOutputDTO userSafeOutputDTO =
+                new UserSafeOutputDTO(
+                        user.getUserId(),
+                        user.getEmail()
+                );
+        return userSafeOutputDTO;
+    }
+
     public SimulationDTO createDTO(Simulation simulation) {
 
         if (simulation == null)
@@ -38,7 +49,7 @@ public class DTOFactory {
                 new SimulationDTO(
                         simulation.getSimulationId(),
                         simulation.getLastInput(),
-                        createDTO(simulation.getUser()),
+                        createSafeDTO(simulation.getUser()),
                         simulation.getAgeAircraft(),
                         simulation.getNoOfPassengers(),
                         simulation.getPicLicence(),
@@ -62,7 +73,7 @@ public class DTOFactory {
                 new SimulationDTO(
                         simulation.getSimulationId(),
                         simulation.getLastInput(),
-                        createDTO(simulation.getUser()),
+                        createSafeDTO(simulation.getUser()),
                         simulation.getAgeAircraft(),
                         simulation.getNoOfPassengers(),
                         simulation.getPicLicence(),
