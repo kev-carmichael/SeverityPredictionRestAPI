@@ -116,3 +116,12 @@ Content-Type: application/json
 POST http://localhost:8080/rest/user/logout/4
 Authorization: -51b1deb417537a7c7a37f12a9cd8c6f9
 
+###
+POST http://localhost:8080/admin/login
+Content-Type: application/json
+
+{
+  "email" : "admin3@gmail.com",
+  "password" : "passwordadmin3"
+}
+

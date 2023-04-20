@@ -18,6 +18,11 @@ public class AdminController {
     private final AdminService adminService;
     private final DTOFactory dtoFactory;
 
+    @PostMapping(path = "/login")
+    public AdminDTO checkCredentials(@Valid @RequestBody AdminCheckCredentialsDTO creds)
+    {
+        return dtoFactory.createDTO(adminService.checkCredentials(creds));
+    }
 
 
 

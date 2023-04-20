@@ -1,5 +1,7 @@
 package com.kev.RestAPI.factory;
 
+import com.kev.RestAPI.admin.AdminDTO;
+import com.kev.RestAPI.entity.Admin;
 import com.kev.RestAPI.entity.Simulation;
 import com.kev.RestAPI.entity.User;
 import com.kev.RestAPI.simulation.SimulationDTO;
@@ -104,6 +106,21 @@ public class DTOFactory {
         return userDTO;
     }
 
+    public AdminDTO createDTO(Admin admin)
+    {
+        if (admin == null)
+        {
+            return null;
+        }
+
+        AdminDTO adminDTO =
+                new AdminDTO(
+                        admin.getAdminId(),
+                        admin.getEmail(),
+                        admin.getToken());
+
+        return adminDTO;
+    }
 
 
 }
