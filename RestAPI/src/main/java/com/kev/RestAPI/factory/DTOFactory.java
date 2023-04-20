@@ -5,11 +5,12 @@ import com.kev.RestAPI.entity.Admin;
 import com.kev.RestAPI.entity.Simulation;
 import com.kev.RestAPI.entity.User;
 import com.kev.RestAPI.simulation.SimulationDTO;
-import com.kev.RestAPI.user.NewUserAndCheckCredentialsDTO;
-import com.kev.RestAPI.user.UserDTO;
-import com.kev.RestAPI.user.UserRepository;
-import com.kev.RestAPI.user.UserSafeOutputDTO;
+import com.kev.RestAPI.user.*;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class DTOFactory {
@@ -28,6 +29,65 @@ public class DTOFactory {
                         user.getEmail(),
                         user.getToken()
                 );
+        return userDTO;
+    }
+
+    public UserSimulationsDTO createUserSimulationsDTO(User user) {
+        UserSimulationsDTO userSimulationsDTO =
+                new UserSimulationsDTO(createDTOList(user.getSimulations()));
+        return userSimulationsDTO;
+    }
+
+    public List<SimulationDTO> createDTOList(List<Simulation> simulations) {
+        UserDTO userDTO = createSummaryDTO(simulations.stream().findFirst().get().getUser());
+        return simulations.stream().map(simulation ->
+                createDTO(simulation, userDTO)).collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    public SimulationDTO createDTO(Simulation simulation, UserDTO userDTO) {
+        if(simulation.getDayOfWeek() == null){
+            return new SimulationDTO(
+                    simulation.getSimulationId(),
+                    simulation.getLastInput(),
+                    createSafeDTO(simulation.getUser()),
+                    simulation.getAgeAircraft(),
+                    simulation.getNoOfPassengers(),
+                    simulation.getPicLicence(),
+                    simulation.getPicAge(),
+                    simulation.getTotalHrs(),
+                    simulation.getTypeHrs(),
+                    simulation.getNinetyDayHrs(),
+                    simulation.getTwentyEightDayHrs(),
+                    null,
+                    simulation.getAccidentSeverity(),
+                    null);
+        } else {
+            return new SimulationDTO(
+                    simulation.getSimulationId(),
+                    simulation.getLastInput(),
+                    createSafeDTO(simulation.getUser()),
+                    simulation.getAgeAircraft(),
+                    simulation.getNoOfPassengers(),
+                    simulation.getPicLicence(),
+                    simulation.getPicAge(),
+                    simulation.getTotalHrs(),
+                    simulation.getTypeHrs(),
+                    simulation.getNinetyDayHrs(),
+                    simulation.getTwentyEightDayHrs(),
+                    simulation.getDayOfWeek(),
+                    null,
+                    simulation.getInjurySeverity());
+        }
+    }
+
+    public UserDTO createSummaryDTO(User user) {
+        UserDTO userDTO =
+                new UserDTO(
+                        user.getUserId(),
+                        user.getEmail(),
+                        user.getToken());
+        userDTO.setNumberOfSimulations(user.getSimulationCount());
+
         return userDTO;
     }
 

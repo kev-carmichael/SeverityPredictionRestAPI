@@ -45,9 +45,21 @@ public class UserService {
                 (userSize + 1),
                 newUserAndCheckCredentialsDTO.getEmail(),
                 newUserAndCheckCredentialsDTO.getPassword(),
-                token
+                token,
+                null
         );
         return userRepository.save(user);
+    }
+
+    public UserSimulationsDTO getUserSimulationsList(int userId) {
+        for (User user : userRepository.findAll()){
+            if(user.getUserId() == userId){
+                UserSimulationsDTO userSimulationsDTO =
+                        dtoFactory.createUserSimulationsDTO(user);
+                return userSimulationsDTO;
+            }
+        }
+        return null;
     }
 
     public boolean findIfEmailExists(String email) {

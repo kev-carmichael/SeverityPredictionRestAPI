@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -23,15 +25,24 @@ public class User {
 
     private String token;
 
+    @OneToMany(mappedBy = "user")
+    @OrderBy(value = "simulationId")
+    private List<Simulation> simulations;
+
+
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return String.format(
                 "%s, %s",
                 userId,
                 email);
     }
+
+    public int getSimulationCount() {
+        return simulations.size();
+    }
+
 
 
 }

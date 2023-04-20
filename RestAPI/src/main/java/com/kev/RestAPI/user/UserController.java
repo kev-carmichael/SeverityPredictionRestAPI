@@ -32,6 +32,13 @@ public class UserController {
         return dtoFactory.createDTO(userService.addUser(newUserAndCheckCredentialsDTO));
     }
 
+    @GetMapping(path = "/allsimulations/{userid}")
+    public UserSimulationsDTO getUserSimulationsList
+            (@PathVariable(name = "userid")
+             @Min(value = 1, message = "userId must be greater than 0") int userId) {
+        return userService.getUserSimulationsList(userId);
+    }
+
     @PostMapping(path = "/login")
     public UserDTO checkCredentials(@Valid @RequestBody NewUserAndCheckCredentialsDTO credsDTO)
     {
