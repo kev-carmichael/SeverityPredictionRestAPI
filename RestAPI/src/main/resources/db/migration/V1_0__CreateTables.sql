@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS simulation;
+DROP TABLE IF EXISTS admin;
 
 CREATE TABLE user
 (
@@ -28,13 +29,25 @@ CREATE TABLE simulation
     injury_severity varchar(50)
 );
 
+CREATE TABLE admin
+(
+    admin_id integer primary key auto_increment,
+    email varchar(50) not null,
+    password varchar(50) not null,
+    token varchar(50)
+);
+
 INSERT INTO user (email, password)
 VALUES ('adam@gmail.com', 'password1'),
        ('bob@gmail.com', 'password2'),
        ('colin@gmail.com', 'password3');
 
-
 INSERT INTO simulation (last_input, user, age_aircraft, no_of_passengers, pic_licence, pic_age, total_hrs, type_hrs, ninety_day_hrs, twenty_eight_day_hrs, day_of_week, accident_severity, injury_severity)
 VALUES ('2023-01-01', 1, 15, 0, 'student', 21, 35, 35, 24, 8, null, 'non-severe', null),
        ('2023-02-02', 2, 25, 1, 'airline transport pilot licence', 52, 10000, 2, 180, 60, 'Wed', null, 'minor/none'),
        ('2023-03-03', 3, 35, 1, 'private pilot licence', 67, 3000, 2100, 24, 8, null, 'non-severe', null);
+
+INSERT INTO admin(email, password)
+VALUES ('admin1@gmail.com', 'passwordadmin1'),
+       ('admin2@gmail.com', 'passwordadmin2');
+
