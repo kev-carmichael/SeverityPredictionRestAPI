@@ -103,3 +103,12 @@ Content-Type: application/json
   "password": "password4"
 }
 
+###
+POST http://localhost:8080/rest/user/login
+Content-Type: application/json
+
+{
+  "email": "dave@gmail.com",
+  "password": "password4"
+}
+

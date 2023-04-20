@@ -78,5 +78,21 @@ public class DTOFactory {
         return simulationDTO;
     }
 
+    public UserDTO createDTOWithToken(User user) {
+        if (user == null)
+        {
+            return null;
+        }
+
+        UserDTO userDTO =
+                new UserDTO(
+                        user.getUserId(),
+                        user.getEmail(),
+                        user.getToken());
+
+        return userDTO;
+    }
+
+
 
 }

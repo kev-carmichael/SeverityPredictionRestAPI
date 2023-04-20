@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/rest/user")
 @AllArgsConstructor
@@ -24,10 +26,17 @@ public class UserController {
     }
 
     @PostMapping(path = "/add")
-    public UserDTO addUser(@RequestBody NewUserDTO newUserDTO)
+    public UserDTO addUser(@RequestBody NewUserAndCheckCredentialsDTO newUserAndCheckCredentialsDTO)
     {
-        return dtoFactory.createDTO(userService.addUser(newUserDTO));
+        return dtoFactory.createDTO(userService.addUser(newUserAndCheckCredentialsDTO));
     }
+
+    @PostMapping(path = "/login")
+    public UserDTO checkCredentials(@Valid @RequestBody NewUserAndCheckCredentialsDTO credsDTO)
+    {
+        return dtoFactory.createDTOWithToken(userService.checkCredentials(credsDTO));
+    }
+
 
 
 
