@@ -19,6 +19,8 @@ public class User {
     private int userId;
     private String email;
 
+    private String password;
+
 
     @Override
     public String toString()

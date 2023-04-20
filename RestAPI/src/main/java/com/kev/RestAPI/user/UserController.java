@@ -3,9 +3,7 @@ package com.kev.RestAPI.user;
 
 import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/rest/user")
@@ -22,6 +20,7 @@ public class UserController {
         UserDTOList userDTOList = new UserDTOList(userService.getUserList());
         return userDTOList;
     }
+
 
 
 

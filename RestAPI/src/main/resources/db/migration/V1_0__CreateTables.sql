@@ -4,7 +4,8 @@ DROP TABLE IF EXISTS simulation;
 CREATE TABLE user
 (
     user_id integer primary key auto_increment,
-    email varchar(50) not null
+    email varchar(50) not null,
+    password varchar(50) not null
 );
 
 CREATE TABLE simulation
@@ -26,10 +27,10 @@ CREATE TABLE simulation
     injury_severity varchar(50)
 );
 
-INSERT INTO user (email)
-VALUES ('adam@gmail.com'),
-       ('bob@gmail.com'),
-       ('colin@gmail.com');
+INSERT INTO user (email, password)
+VALUES ('adam@gmail.com', 'password1'),
+       ('bob@gmail.com', 'password2'),
+       ('colin@gmail.com', 'password3');
 
 
 INSERT INTO simulation (last_input, user, age_aircraft, no_of_passengers, pic_licence, pic_age, total_hrs, type_hrs, ninety_day_hrs, twenty_eight_day_hrs, day_of_week, accident_severity, injury_severity)
