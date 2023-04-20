@@ -7,6 +7,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 
 @RestController
 @RequestMapping("/rest/user")
@@ -36,6 +37,14 @@ public class UserController {
     {
         return dtoFactory.createDTOWithToken(userService.checkCredentials(credsDTO));
     }
+
+    @PostMapping(path = "/logout/{id}")
+    public void logout(
+            @PathVariable(name = "id")
+            @Min(value = 1, message = "customerId must be greater than 0") int id) {
+        userService.clearToken(id);
+    }
+
 
 
 

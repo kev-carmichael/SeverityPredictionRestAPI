@@ -71,5 +71,13 @@ public class UserService {
         return null;
     }
 
+    public void clearToken(int id) {
+        User user = userRepository.findById(id).orElse(null);
+        if(user != null && user.getToken() != null) {
+            user.setToken(null);
+            userRepository.save(user);
+        }
+    }
+
 
 }

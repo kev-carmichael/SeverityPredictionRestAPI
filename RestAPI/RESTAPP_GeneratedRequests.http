@@ -112,3 +112,7 @@ Content-Type: application/json
   "password": "password4"
 }
 
+###
+POST http://localhost:8080/rest/user/logout/4
+Authorization: -51b1deb417537a7c7a37f12a9cd8c6f9
+
