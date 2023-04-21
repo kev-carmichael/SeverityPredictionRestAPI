@@ -103,4 +103,26 @@ class SimulationServiceTest {
 
     }
 
+    @Test
+    void t5_when_28DayHrsAreGreaterThanTotalHrs_Expect_TypeHrs90DayHrsOr28DayHrsGreaterThanTotalHrsException() {
+
+        SimulationRepository mockSimulationRepository = mock(SimulationRepository.class);
+        DTOFactory mockDTOFactory = mock(DTOFactory.class);
+        UserRepository mockUserRepository = mock(UserRepository.class);
+
+        SimulationService simulationService = new SimulationService(mockDTOFactory,
+                mockSimulationRepository, mockUserRepository);
+
+        SimulationInputDTO simulationInputDTO = new SimulationInputDTO(
+                LocalDate.now(),
+                mock(User.class), 1, 1,
+                "student", 21, 10, 1,
+                1, 11, null);
+
+        assertThrows(
+                TypeHrs90DayHrsOr28DayHrsGreaterThanTotalHrsException.class,
+                () -> simulationService.addSimulation8(simulationInputDTO));
+
+    }
+
 }
