@@ -2,6 +2,7 @@ package com.kev.RestAPI.simulation;
 
 import com.kev.RestAPI.entity.User;
 import com.kev.RestAPI.exception.LastInputDateIsAfterDateTodayException;
+import com.kev.RestAPI.exception.PicAgeLessThan21AndAirlineTransportLicenceException;
 import com.kev.RestAPI.exception.TwentyEightDayHrsGreaterThan90DayHrsException;
 import com.kev.RestAPI.exception.TypeHrs90DayHrsOr28DayHrsGreaterThanTotalHrsException;
 import com.kev.RestAPI.factory.DTOFactory;
@@ -14,7 +15,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 
 class SimulationServiceTest {
-
 
     @Test
     void t1_when_lastInputIsAfterToday_Expect_LastInputDateIsAfterDateTodayException() {
@@ -56,7 +56,6 @@ class SimulationServiceTest {
         assertThrows(
                 TwentyEightDayHrsGreaterThan90DayHrsException.class,
                 () -> simulationService.addSimulation8(simulationInputDTO));
-
     }
 
     @Test
@@ -78,7 +77,6 @@ class SimulationServiceTest {
         assertThrows(
                 TypeHrs90DayHrsOr28DayHrsGreaterThanTotalHrsException.class,
                 () -> simulationService.addSimulation8(simulationInputDTO));
-
     }
 
     @Test
@@ -100,7 +98,6 @@ class SimulationServiceTest {
         assertThrows(
                 TypeHrs90DayHrsOr28DayHrsGreaterThanTotalHrsException.class,
                 () -> simulationService.addSimulation8(simulationInputDTO));
-
     }
 
     @Test
@@ -122,7 +119,27 @@ class SimulationServiceTest {
         assertThrows(
                 TypeHrs90DayHrsOr28DayHrsGreaterThanTotalHrsException.class,
                 () -> simulationService.addSimulation8(simulationInputDTO));
+    }
 
+    @Test
+    void t6_when_PicAgeIsLessThan21AndAirlineTransportLicence_Expect_PicAgeLessThan21AndAirlineTransportLicenceException() {
+
+        SimulationRepository mockSimulationRepository = mock(SimulationRepository.class);
+        DTOFactory mockDTOFactory = mock(DTOFactory.class);
+        UserRepository mockUserRepository = mock(UserRepository.class);
+
+        SimulationService simulationService = new SimulationService(mockDTOFactory,
+                mockSimulationRepository, mockUserRepository);
+
+        SimulationInputDTO simulationInputDTO = new SimulationInputDTO(
+                LocalDate.now(),
+                mock(User.class), 1, 1,
+                "airline transport licence", 20, 10, 1,
+                1, 1, null);
+
+        assertThrows(
+                PicAgeLessThan21AndAirlineTransportLicenceException.class,
+                () -> simulationService.addSimulation8(simulationInputDTO));
     }
 
 }
