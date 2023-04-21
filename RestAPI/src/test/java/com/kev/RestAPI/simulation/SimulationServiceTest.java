@@ -3,6 +3,7 @@ package com.kev.RestAPI.simulation;
 import com.kev.RestAPI.entity.User;
 import com.kev.RestAPI.exception.LastInputDateIsAfterDateTodayException;
 import com.kev.RestAPI.exception.TwentyEightDayHrsGreaterThan90DayHrsException;
+import com.kev.RestAPI.exception.TypeHrs90DayHrsOr28DayHrsGreaterThanTotalHrsException;
 import com.kev.RestAPI.factory.DTOFactory;
 import com.kev.RestAPI.user.UserRepository;
 import org.junit.jupiter.api.Test;
@@ -54,6 +55,28 @@ class SimulationServiceTest {
 
         assertThrows(
                 TwentyEightDayHrsGreaterThan90DayHrsException.class,
+                () -> simulationService.addSimulation8(simulationInputDTO));
+
+    }
+
+    @Test
+    void t3_when_TypeHrsAreGreaterThanTotalHrs_Expect_TypeHrs90DayHrsOr28DayHrsGreaterThanTotalHrsException() {
+
+        SimulationRepository mockSimulationRepository = mock(SimulationRepository.class);
+        DTOFactory mockDTOFactory = mock(DTOFactory.class);
+        UserRepository mockUserRepository = mock(UserRepository.class);
+
+        SimulationService simulationService = new SimulationService(mockDTOFactory,
+                mockSimulationRepository, mockUserRepository);
+
+        SimulationInputDTO simulationInputDTO = new SimulationInputDTO(
+                LocalDate.now(),
+                mock(User.class), 1, 1,
+                "student", 21, 10, 11,
+                1, 1, null);
+
+        assertThrows(
+                TypeHrs90DayHrsOr28DayHrsGreaterThanTotalHrsException.class,
                 () -> simulationService.addSimulation8(simulationInputDTO));
 
     }
