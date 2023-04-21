@@ -59,5 +59,6 @@ public class SimulationDTO {
     private final String dayOfWeek;
     private final String accidentSeverity;
     private final String injurySeverity;
+    private final String probability;
 
 }

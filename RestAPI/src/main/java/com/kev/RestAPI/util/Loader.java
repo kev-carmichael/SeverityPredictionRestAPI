@@ -11,7 +11,7 @@ public class Loader {
     Classifier classifier;
     Instances testInstances;
 
-    public String load8(SimulationInputDTO simulationInputDTO) throws Exception {
+    public ArrayList<String> load8(SimulationInputDTO simulationInputDTO) throws Exception {
         classifier = (Classifier) weka.core.SerializationHelper.read("C://Users/KC135/DissertationJava/datasets/3_random_forest/ACCIDENT severity data and results/RF_8xvars.model");
         ArrayList<String> data = new ArrayList<>();
         data.add(Integer.toString(simulationInputDTO.getAgeAircraft()));
@@ -26,27 +26,30 @@ public class Loader {
         testInstances = new Converter().convert8(data);
 
         testInstances.setClassIndex(testInstances.numAttributes() - 1);
-        String result = "";
+        String severityClass;
+        String estimatedProbability;
+        ArrayList<String> result = new ArrayList<>();
 
-        for (int i = 0; i < testInstances.numInstances(); i++) {
-            Instance testInstance = testInstances.instance(i);
-            double prediction = classifier.classifyInstance(testInstance);
-            double[] probabilities = classifier.distributionForInstance(testInstance);
+        Instance testInstance = testInstances.instance(0);
+        double prediction = classifier.classifyInstance(testInstance);
+        double[] probabilities = classifier.distributionForInstance(testInstance);
 
-            /*result += "Instance " + (i+1) + " - ";
-            result += "Actual class: " + testInstance.stringValue(testInstance.classIndex());
-            result += " Predicted class: " + testInstances.classAttribute().value((int) prediction);
-            result += ". Class probabilities: ";
-            for (double probability : probabilities) {
-                result += probability + " ";
+        severityClass = "Predicted severity class for simulation: " + testInstances.classAttribute().value((int) prediction);
+        result.add(severityClass);
+        double max = 0.0;
+        for (double probability : probabilities) {
+            if(probability > max){
+                max = probability;
             }
-            result += "\n";*/
-            result += testInstances.classAttribute().value((int) prediction);
         }
+        max = Math.round(max * 1000);
+        max = max/1000;
+        estimatedProbability = "Estimated membership probability of the simulation for predicted severity class: " + max;
+        result.add(estimatedProbability);
         return result;
     }
 
-    public String load9(SimulationInputDTO simulationInputDTO) throws Exception {
+    public ArrayList<String> load9(SimulationInputDTO simulationInputDTO) throws Exception {
         classifier = (Classifier) weka.core.SerializationHelper.read("C://Users/KC135/DissertationJava/datasets/2_decision_tree/INJURY severity data and results/DT_9xvars_v2.model");
         ArrayList<String> data = new ArrayList<>();
         data.add(Integer.toString(simulationInputDTO.getAgeAircraft()));
@@ -61,23 +64,26 @@ public class Loader {
         testInstances = new Converter().convert9(data);
 
         testInstances.setClassIndex(testInstances.numAttributes() - 1);
-        String result = "";
+        String severityClass;
+        String estimatedProbability;
+        ArrayList<String> result = new ArrayList<>();
 
-        for (int i = 0; i < testInstances.numInstances(); i++) {
-            Instance testInstance = testInstances.instance(i);
-            double prediction = classifier.classifyInstance(testInstance);
-            double[] probabilities = classifier.distributionForInstance(testInstance);
+        Instance testInstance = testInstances.instance(0);
+        double prediction = classifier.classifyInstance(testInstance);
+        double[] probabilities = classifier.distributionForInstance(testInstance);
 
-            /*result += "Instance " + (i+1) + " - ";
-            result += "Actual class: " + testInstance.stringValue(testInstance.classIndex());
-            result += " Predicted class: " + testInstances.classAttribute().value((int) prediction);
-            result += ". Class probabilities: ";
-            for (double probability : probabilities) {
-                result += probability + " ";
+        severityClass = "Predicted severity class for simulation: " + testInstances.classAttribute().value((int) prediction);
+        result.add(severityClass);
+        double max = 0.0;
+        for (double probability : probabilities) {
+            if(probability > max){
+                max = probability;
             }
-            result += "\n";*/
-            result += testInstances.classAttribute().value((int) prediction);
         }
+        max = Math.round(max * 1000);
+        max = max/1000;
+        estimatedProbability = "Estimated membership probability of the simulation for predicted severity class: " + max;
+        result.add(estimatedProbability);
         return result;
     }
 

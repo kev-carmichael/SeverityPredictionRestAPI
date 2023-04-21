@@ -82,8 +82,9 @@ public class SimulationService {
                     simulationInputDTO.getNinetyDayHrs(),
                     simulationInputDTO.getTwentyEightDayHrs(),
                     null,
-                    loader.load8(simulationInputDTO),
-                    null);
+                    loader.load8(simulationInputDTO).get(0),
+                    null,
+                    loader.load8(simulationInputDTO).get(1));
             return simulationRepository.save(simulation);
         } else {
             return null;
@@ -126,7 +127,8 @@ public class SimulationService {
                 simulationInputDTO.getTwentyEightDayHrs(),
                 simulationInputDTO.getDayOfWeek(),
                 null,
-                loader.load9(simulationInputDTO));
+                loader.load9(simulationInputDTO).get(0),
+                loader.load9(simulationInputDTO).get(1));
         return simulationRepository.save(simulation);
     }
 
@@ -164,9 +166,11 @@ public class SimulationService {
         simulationEntity.setTwentyEightDayHrs(simulationInputDTO.getTwentyEightDayHrs());
         if(simulationInputDTO.getDayOfWeek() != null) {
             simulationEntity.setDayOfWeek(simulationInputDTO.getDayOfWeek());
-            simulationEntity.setInjurySeverity(loader.load9(simulationInputDTO));
+            simulationEntity.setInjurySeverity(loader.load9(simulationInputDTO).get(0));
+            simulationEntity.setProbability(loader.load9(simulationInputDTO).get(1));
         } else {
-            simulationEntity.setAccidentSeverity(loader.load8(simulationInputDTO));
+            simulationEntity.setAccidentSeverity(loader.load8(simulationInputDTO).get(0));
+            simulationEntity.setProbability(loader.load8(simulationInputDTO).get(1));
         }
 
         return simulationRepository.save(simulationEntity);

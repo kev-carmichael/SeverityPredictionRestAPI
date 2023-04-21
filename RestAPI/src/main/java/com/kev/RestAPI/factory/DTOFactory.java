@@ -60,7 +60,8 @@ public class DTOFactory {
                     simulation.getTwentyEightDayHrs(),
                     null,
                     simulation.getAccidentSeverity(),
-                    null);
+                    null,
+                    simulation.getProbability());
         } else {
             return new SimulationDTO(
                     simulation.getSimulationId(),
@@ -76,7 +77,8 @@ public class DTOFactory {
                     simulation.getTwentyEightDayHrs(),
                     simulation.getDayOfWeek(),
                     null,
-                    simulation.getInjurySeverity());
+                    simulation.getInjurySeverity(),
+                    simulation.getProbability());
         }
     }
 
@@ -122,7 +124,8 @@ public class DTOFactory {
                         simulation.getTwentyEightDayHrs(),
                         simulation.getDayOfWeek(),
                         simulation.getAccidentSeverity(),
-                        simulation.getInjurySeverity());
+                        simulation.getInjurySeverity(),
+                        simulation.getProbability());
         return simulationDTO;
     }
 
@@ -146,7 +149,8 @@ public class DTOFactory {
                         simulation.getTwentyEightDayHrs(),
                         simulation.getDayOfWeek(),
                         simulation.getAccidentSeverity(),
-                        simulation.getInjurySeverity());
+                        simulation.getInjurySeverity(),
+                        simulation.getProbability());
 
         return simulationDTO;
     }

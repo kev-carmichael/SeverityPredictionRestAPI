@@ -37,5 +37,6 @@ public class Simulation {
     private String dayOfWeek;
     private String accidentSeverity;
     private String injurySeverity;
+    private String probability;
 
 }
