@@ -2,10 +2,7 @@ package com.kev.RestAPI.simulation;
 
 import com.kev.RestAPI.entity.Simulation;
 import com.kev.RestAPI.entity.User;
-import com.kev.RestAPI.exception.LastInputDateIsAfterDateTodayException;
-import com.kev.RestAPI.exception.PicAgeLessThan21AndAirlineTransportLicenceException;
-import com.kev.RestAPI.exception.TwentyEightDayHrsGreaterThan90DayHrsException;
-import com.kev.RestAPI.exception.TypeHrs90DayHrsOr28DayHrsGreaterThanTotalHrsException;
+import com.kev.RestAPI.exception.*;
 import com.kev.RestAPI.factory.DTOFactory;
 import com.kev.RestAPI.user.UserRepository;
 import com.kev.RestAPI.util.Loader;
@@ -71,6 +68,11 @@ public class SimulationService {
                     throw new PicAgeLessThan21AndAirlineTransportLicenceException();
         }
 
+        //check if pic age <17 that private pilot licence not held
+        if(simulationInputDTO.getPicAge()<17 && simulationInputDTO.getPicLicence().equals("private pilot licence")){
+                    throw new PicAgeLess17AndPrivatePilotLicenceException();
+        }
+
         Loader loader = new Loader();
 
         //check existing user and save simulation
@@ -117,6 +119,16 @@ public class SimulationService {
             throw new TwentyEightDayHrsGreaterThan90DayHrsException();
         }
 
+        //check if pic age <21 that airline transport licence not held
+        if(simulationInputDTO.getPicAge()<21 && simulationInputDTO.getPicLicence().equals("airline transport licence")){
+            throw new PicAgeLessThan21AndAirlineTransportLicenceException();
+        }
+
+        //check if pic age <17 that private pilot licence not held
+        if(simulationInputDTO.getPicAge()<17 && simulationInputDTO.getPicLicence().equals("private pilot licence")){
+            throw new PicAgeLess17AndPrivatePilotLicenceException();
+        }
+
         Loader loader = new Loader();
 
         Simulation simulation = new Simulation(
@@ -157,6 +169,16 @@ public class SimulationService {
         //check that 28-day hrs are not more than 90-day hrs
         if(simulationInputDTO.getTwentyEightDayHrs()>simulationInputDTO.getNinetyDayHrs() ){
             throw new TwentyEightDayHrsGreaterThan90DayHrsException();
+        }
+
+        //check if pic age <21 that airline transport licence not held
+        if(simulationInputDTO.getPicAge()<21 && simulationInputDTO.getPicLicence().equals("airline transport licence")){
+            throw new PicAgeLessThan21AndAirlineTransportLicenceException();
+        }
+
+        //check if pic age <17 that private pilot licence not held
+        if(simulationInputDTO.getPicAge()<17 && simulationInputDTO.getPicLicence().equals("private pilot licence")){
+            throw new PicAgeLess17AndPrivatePilotLicenceException();
         }
 
         //INPUT UPDATE CHANGES INTO ENTITY

@@ -1,10 +1,7 @@
 package com.kev.RestAPI.simulation;
 
 import com.kev.RestAPI.entity.User;
-import com.kev.RestAPI.exception.LastInputDateIsAfterDateTodayException;
-import com.kev.RestAPI.exception.PicAgeLessThan21AndAirlineTransportLicenceException;
-import com.kev.RestAPI.exception.TwentyEightDayHrsGreaterThan90DayHrsException;
-import com.kev.RestAPI.exception.TypeHrs90DayHrsOr28DayHrsGreaterThanTotalHrsException;
+import com.kev.RestAPI.exception.*;
 import com.kev.RestAPI.factory.DTOFactory;
 import com.kev.RestAPI.user.UserRepository;
 import org.junit.jupiter.api.Test;
@@ -139,6 +136,27 @@ class SimulationServiceTest {
 
         assertThrows(
                 PicAgeLessThan21AndAirlineTransportLicenceException.class,
+                () -> simulationService.addSimulation8(simulationInputDTO));
+    }
+
+    @Test
+    void t7_when_PicAgeIsLessThan17AndPrivatePilotLicence_Expect_PicAgeLess17AndPrivatePilotLicenceException() {
+
+        SimulationRepository mockSimulationRepository = mock(SimulationRepository.class);
+        DTOFactory mockDTOFactory = mock(DTOFactory.class);
+        UserRepository mockUserRepository = mock(UserRepository.class);
+
+        SimulationService simulationService = new SimulationService(mockDTOFactory,
+                mockSimulationRepository, mockUserRepository);
+
+        SimulationInputDTO simulationInputDTO = new SimulationInputDTO(
+                LocalDate.now(),
+                mock(User.class), 1, 1,
+                "private pilot licence", 16, 10, 1,
+                1, 1, null);
+
+        assertThrows(
+                PicAgeLess17AndPrivatePilotLicenceException.class,
                 () -> simulationService.addSimulation8(simulationInputDTO));
     }
 
