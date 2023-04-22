@@ -69,6 +69,34 @@ class UserControllerIntegrationTests {
                 .andExpect(content().string(""));
     }
 
+    @Test
+    void t11_when_UserExistsAndCheckCredentialsWithIncorrectEmail_Expect_NoUserReturned() throws Exception
+    {
+        User user = new User(
+                0,
+                "Zebedee@gmail.com",
+                "password26",
+                null,
+                null);
+
+        simulationRepository.deleteAll();
+        userRepository.deleteAll();
+        adminRepository.deleteAll();
+
+        userRepository.save(user);
+
+        String jsonCredentialsToCheck =
+                "{\"email\": \"wrongEmail@gmail.com\"," +
+                        "\"password\": \"password26\"}";
+
+        mockMvc
+                .perform(post("/rest/user/login")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonCredentialsToCheck))
+                .andExpect(status().isOk())
+                .andExpect(content().string(""));
+    }
+
 
 
 }
