@@ -12,6 +12,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -42,8 +43,7 @@ class UserControllerIntegrationTests {
     private AdminRepository adminRepository;
 
     @Test
-    void t10_when_UserExistsAndCheckCredentialsWithIncorrectPassword_Expect_NoUserReturned() throws Exception
-    {
+    void t10_when_UserExistsAndCheckCredentialsWithIncorrectPassword_Expect_NoUserReturned() throws Exception {
         User user = new User(
                 0,
                 "Zebedee@gmail.com",
@@ -70,8 +70,7 @@ class UserControllerIntegrationTests {
     }
 
     @Test
-    void t11_when_UserExistsAndCheckCredentialsWithIncorrectEmail_Expect_NoUserReturned() throws Exception
-    {
+    void t11_when_UserExistsAndCheckCredentialsWithIncorrectEmail_Expect_NoUserReturned() throws Exception {
         User user = new User(
                 0,
                 "Zebedee@gmail.com",
@@ -98,8 +97,7 @@ class UserControllerIntegrationTests {
     }
 
     @Test
-    void t12_when_UserExistsAndCheckCredentialsWithCorrectValues_Expect_UserReturned() throws Exception
-    {
+    void t12_when_UserExistsAndCheckCredentialsWithCorrectValues_Expect_UserReturned() throws Exception {
         User user = new User(
                 0,
                 "Zebedee@gmail.com",
@@ -128,6 +126,27 @@ class UserControllerIntegrationTests {
                 .andExpect(jsonPath("$.simulations").isEmpty());
     }
 
+    @Test
+    void t14_when_GetSimulationWithInvalidUserId_expect_BadRequestAndCorrectErrorMessage() throws Exception {
+
+        User user = new User(
+                0,
+                "Zebedee@gmail.com",
+                "password26",
+                "abc123",
+                null);
+
+        simulationRepository.deleteAll();
+        userRepository.deleteAll();
+        adminRepository.deleteAll();
+
+        userRepository.save(user);
+
+        mockMvc
+                .perform(get("/rest/user/allsimulations/0").header("AUTHORIZATION", "abc123"))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string("Validation error: userId must be greater than 0"));
+    }
 
 
 }
