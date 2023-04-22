@@ -13,8 +13,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
@@ -95,6 +95,37 @@ class UserControllerIntegrationTests {
                         .content(jsonCredentialsToCheck))
                 .andExpect(status().isOk())
                 .andExpect(content().string(""));
+    }
+
+    @Test
+    void t12_when_UserExistsAndCheckCredentialsWithCorrectValues_Expect_UserReturned() throws Exception
+    {
+        User user = new User(
+                0,
+                "Zebedee@gmail.com",
+                "password26",
+                null,
+                null);
+
+        simulationRepository.deleteAll();
+        userRepository.deleteAll();
+        adminRepository.deleteAll();
+
+        userRepository.save(user);
+
+        String jsonCredentialsToCheck =
+                "{\"email\": \"Zebedee@gmail.com\"," +
+                        "\"password\": \"password26\"}";
+
+        mockMvc
+                .perform(post("/rest/user/login")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonCredentialsToCheck))
+                .andExpect(status().isOk())
+
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.email").value("Zebedee@gmail.com"))
+                .andExpect(jsonPath("$.simulations").isEmpty());
     }
 
 
