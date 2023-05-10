@@ -5,6 +5,9 @@ import weka.classifiers.Classifier;
 import weka.core.Instance;
 import weka.core.Instances;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Loader {
@@ -12,8 +15,11 @@ public class Loader {
     Instances testInstances;
 
     public ArrayList<String> load8(SimulationInputDTO simulationInputDTO) throws Exception {
-        classifier = (Classifier) weka.core.SerializationHelper.read("C://Users/KC135/DissertationJava/datasets/3_random_forest/ACCIDENT severity data and results/RF_8xvars.model");
-        ArrayList<String> data = new ArrayList<>();
+        ClassLoader classLoader = getClass().getClassLoader();
+        File file = new File(classLoader.getResource("RF_8xvars_SMOTE.model").getFile());
+        classifier = (Classifier) weka.core.SerializationHelper.read(file.getAbsolutePath());
+
+       ArrayList<String> data = new ArrayList<>();
         data.add(Integer.toString(simulationInputDTO.getAgeAircraft()));
         data.add(Integer.toString(simulationInputDTO.getNoOfPassengers()));
         data.add(simulationInputDTO.getPicLicence());
