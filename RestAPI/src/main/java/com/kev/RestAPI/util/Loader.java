@@ -56,7 +56,10 @@ public class Loader {
     }
 
     public ArrayList<String> load9(SimulationInputDTO simulationInputDTO) throws Exception {
-        classifier = (Classifier) weka.core.SerializationHelper.read("C://Users/KC135/DissertationJava/datasets/2_decision_tree/INJURY severity data and results/DT_9xvars_v2.model");
+        ClassLoader classLoader = getClass().getClassLoader();
+        File file = new File(classLoader.getResource("RF_9xvars_SMOTE_v2.model").getFile());
+        classifier = (Classifier) weka.core.SerializationHelper.read(file.getAbsolutePath());
+
         ArrayList<String> data = new ArrayList<>();
         data.add(Integer.toString(simulationInputDTO.getAgeAircraft()));
         data.add(Integer.toString(simulationInputDTO.getNoOfPassengers()));
