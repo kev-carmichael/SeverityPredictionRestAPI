@@ -6,8 +6,6 @@ import weka.core.Instance;
 import weka.core.Instances;
 
 import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Loader {
@@ -16,7 +14,7 @@ public class Loader {
 
     public ArrayList<String> load8(SimulationInputDTO simulationInputDTO) throws Exception {
         ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource("RF_8xvars_SMOTE.model").getFile());
+        File file = new File(classLoader.getResource("RF_8xvars_training_set_2_140523.model").getFile());
         classifier = (Classifier) weka.core.SerializationHelper.read(file.getAbsolutePath());
 
        ArrayList<String> data = new ArrayList<>();
@@ -57,7 +55,7 @@ public class Loader {
 
     public ArrayList<String> load9(SimulationInputDTO simulationInputDTO) throws Exception {
         ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource("RF_9xvars_SMOTE_v2.model").getFile());
+        File file = new File(classLoader.getResource("RF_9xvars_training_set_1_140523.model").getFile());
         classifier = (Classifier) weka.core.SerializationHelper.read(file.getAbsolutePath());
 
         ArrayList<String> data = new ArrayList<>();
